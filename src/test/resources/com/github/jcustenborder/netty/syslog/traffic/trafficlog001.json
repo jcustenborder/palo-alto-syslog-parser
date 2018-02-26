@@ -1,0 +1,4 @@
+{
+  "fields" : [ "1", "2018/02/22 21:32:19", "007901000472", "TRAFFIC", "drop", "1", "2018/02/22 21:32:19", "192.168.55.250", "192.168.5.137", "0.0.0.0", "0.0.0.0", "COUNTRY BLOCK", null, null, "not-applicable", "vsys2", "internal", "tenant2-region", "ethernet1/23.2008", null, "syslog-forwarding-tenant2-test", "2018/02/22 21:32:19", "0", "1", "3299", "37215", "0", "0", "0x0", "tcp", "deny", "66", "66", "0", "1", "2018/02/22 21:32:20", "0", "any", "0", "KR", "US" ],
+  "expected" : null
+}
