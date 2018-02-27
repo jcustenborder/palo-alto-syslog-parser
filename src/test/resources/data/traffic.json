@@ -419,7 +419,7 @@
     "name" : "Parent Start Time",
     "methodName" : "parentStartTime",
     "doc" : "Year/month/day hours:minutes:seconds that the parent tunnel session began.",
-    "type" : "java.lang.String",
+    "type" : "java.util.Date",
     "skip" : false,
     "index" : 59
   }, {

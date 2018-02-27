@@ -635,7 +635,7 @@ public interface TrafficLogMessage
      */
     @Nullable
     @Index(59)
-    String parentStartTime();
+    Date parentStartTime();
 
     /**
      * Type of tunnel, such as GRE or IPSec.

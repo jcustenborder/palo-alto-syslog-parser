@@ -130,7 +130,7 @@ public class TrafficLogParser
         log.trace("parse() - Processing field 58: parentSessionId");
         builder.parentSessionId(parseString(fields, 58));
         log.trace("parse() - Processing field 59: parentStartTime");
-        builder.parentStartTime(parseString(fields, 59));
+        builder.parentStartTime(parseDate(fields, 59));
         log.trace("parse() - Processing field 60: tunnelType");
         builder.tunnelType(parseString(fields, 60));
         return builder.build();
