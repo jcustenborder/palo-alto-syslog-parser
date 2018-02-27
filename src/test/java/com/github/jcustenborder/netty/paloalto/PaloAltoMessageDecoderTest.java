@@ -20,7 +20,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.jcustenborder.netty.syslog.BSDSyslogMessage;
-import com.github.jcustenborder.netty.syslog.RFC3164Message;
 import com.github.jcustenborder.netty.syslog.RFC3164MessageParser;
 import com.github.jcustenborder.netty.syslog.SyslogRequest;
 import com.google.common.base.CaseFormat;
@@ -28,6 +27,7 @@ import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
 import java.io.File;
@@ -37,6 +37,7 @@ import java.net.UnknownHostException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -44,6 +45,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.mock;
@@ -68,6 +70,13 @@ public class PaloAltoMessageDecoderTest {
     this.mapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
     this.mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
     this.mapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
+  }
+
+  @Test
+  public void noParsers() {
+    assertThrows(IllegalStateException.class, () -> {
+      new PaloAltoMessageDecoder(Collections.emptyList());
+    });
   }
 
   @TestFactory
