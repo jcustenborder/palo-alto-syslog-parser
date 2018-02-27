@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.github.jcustenborder.netty.syslog.Nullable;
 import com.github.jcustenborder.netty.syslog.RFC3164Message;
 import com.google.common.base.CaseFormat;
+import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableSet;
 import com.sun.codemodel.ClassType;
 import com.sun.codemodel.JClass;
@@ -186,7 +187,10 @@ public class CodeGeneratorTest {
         continue;
       }
       JMethod method = jDefinedClass.method(JMod.NONE, field.type, field.methodName);
-      method.javadoc().append(field.doc);
+      if(!Strings.isNullOrEmpty(field.doc)) {
+        method.javadoc().append(field.doc.trim());
+        method.javadoc().addReturn().add(field.doc.trim());
+      }
       method.annotate(Nullable.class);
       method.annotate(Index.class).param("value", field.index);
     }
