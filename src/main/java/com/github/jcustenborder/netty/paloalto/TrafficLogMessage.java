@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.util.Date;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.github.jcustenborder.netty.syslog.Nullable;
 
 @JsonDeserialize(as = ImmutableTrafficLogMessage.class)
 @JsonSerialize(as = ImmutableTrafficLogMessage.class)

@@ -15,9 +15,12 @@
  */
 package com.github.jcustenborder.netty.paloalto;
 
+import com.github.jcustenborder.netty.syslog.Nullable;
+import com.github.jcustenborder.netty.syslog.RFC3164Message;
+
 import java.util.Date;
 
-public interface PaloAltoMessage {
+public interface PaloAltoMessage extends RFC3164Message {
   /**
    * Time the log was received at the management plane.
    * @return Time the log was received at the management plane.
@@ -30,7 +33,6 @@ public interface PaloAltoMessage {
    * Serial number of the firewall that generated the log.
    * @return Serial number of the firewall that generated the log.
    */
-  @Nullable
   @Index(2)
   String serialNumber();
 

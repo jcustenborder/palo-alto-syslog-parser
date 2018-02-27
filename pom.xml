@@ -75,7 +75,11 @@
             <artifactId>opencsv</artifactId>
             <version>4.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.jcustenborder.netty</groupId>
+            <artifactId>netty-codec-syslog</artifactId>
+            <version>[0.1.4,0.1.1000)</version>
+        </dependency>
         <dependency>
             <groupId>org.immutables</groupId>
             <artifactId>value</artifactId>
