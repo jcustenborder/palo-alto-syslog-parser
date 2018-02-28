@@ -22,9 +22,12 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.github.jcustenborder.netty.syslog.Nullable;
 import com.github.jcustenborder.netty.syslog.RFC3164Message;
 import com.google.common.base.CaseFormat;
+import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.io.Files;
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
 import com.sun.codemodel.ClassType;
 import com.sun.codemodel.JClass;
 import com.sun.codemodel.JClassAlreadyExistsException;
@@ -39,10 +42,12 @@ import org.immutables.value.Value;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -152,6 +157,58 @@ public class CodeGeneratorTest {
   @AfterAll
   static void afterAll() throws IOException {
     model.build(new File("src/main/java"));
+  }
+
+  @Test
+  public void generateReadMe() throws IOException {
+    final CSVParser parser = new CSVParserBuilder()
+        .withSeparator('|')
+        .build();
+
+    try (BufferedWriter builder = Files.newWriter(new File("target/README.md"), Charsets.UTF_8)) {
+      Arrays.stream(inputFiles).forEach(f -> {
+        try {
+          DataInterface dataInterface = mapper.readValue(f, DataInterface.class);
+          builder.append("# ");
+          builder.append(dataInterface.messageName().substring(dataInterface.messageName().lastIndexOf('.') + 1));
+          builder.append('\n');
+          builder.append('\n');
+
+
+          String[] headers = new String[]{"Name", "Type"};
+          String headerRow = parser.parseToLine(headers);
+          builder.append('|');
+          builder.append(headerRow);
+          builder.append("|\n");
+
+          builder.append('|');
+
+
+          builder.append(parser.parseToLine(Arrays.stream(headers).map(h -> Strings.repeat("-", h.length())).toArray(String[]::new)));
+
+          builder.append('|');
+          builder.append('\n');
+
+          dataInterface.fields.stream().filter(field -> !field.skip).forEach(field -> {
+            try {
+              builder.append('|');
+
+              builder.append(
+                  parser.parseToLine(new String[]{field.name, field.type.getName()})
+              );
+              builder.append('|');
+
+              builder.append('\n');
+            } catch (IOException ex) {
+
+            }
+          });
+          builder.append('\n');
+        } catch (IOException e) {
+          log.error("Exception thrown", e);
+        }
+      });
+    }
   }
 
   @TestFactory
