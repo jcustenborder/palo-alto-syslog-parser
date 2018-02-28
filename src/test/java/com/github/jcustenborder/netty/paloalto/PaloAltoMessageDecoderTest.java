@@ -97,7 +97,7 @@ public class PaloAltoMessageDecoderTest {
       BSDSyslogMessage rfc3164Message = (BSDSyslogMessage) output.get(0);
       output.clear();
       this.decoder.decode(null, rfc3164Message, output);
-      assertFalse(output.isEmpty(), "output should not be false.");
+      assertFalse(output.isEmpty(), "output should not be empty.");
       assertTrue(output.get(0) instanceof PaloAltoMessage, "output should contain PaloAltoMessage.");
       PaloAltoMessage paloAltoMessage = (PaloAltoMessage) output.get(0);
       countByParser.add(paloAltoMessage.type());
