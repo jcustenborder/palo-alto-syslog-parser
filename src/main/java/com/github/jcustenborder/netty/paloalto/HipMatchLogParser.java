@@ -70,7 +70,7 @@ public class HipMatchLogParser
 
     @Override
     public String logType() {
-        return "HIP-MATCH";
+        return "HIPMATCH";
     }
 
 }

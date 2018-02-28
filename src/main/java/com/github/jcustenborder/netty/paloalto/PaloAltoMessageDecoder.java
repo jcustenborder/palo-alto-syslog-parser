@@ -37,7 +37,12 @@ public class PaloAltoMessageDecoder extends MessageToMessageDecoder<RFC3164Messa
 
   public PaloAltoMessageDecoder() {
     this(Arrays.asList(
-        new TrafficLogParser()
+        new AuthenticationLogParser(),
+        new ConfigLogParser(),
+        new HipMatchLogParser(),
+        new ThreatLogParser(),
+        new TrafficLogParser(),
+        new UserIdLogParser()
     ));
   }
 

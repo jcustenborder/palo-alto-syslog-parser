@@ -202,7 +202,7 @@ public class CodeGeneratorTest {
 
     final JMethod logTypeMethod = jDefinedClass.method(JMod.PUBLIC, String.class, "logType");
     logTypeMethod.annotate(Override.class);
-    logTypeMethod.body()._return(JExpr.lit(dataInterface.logType.toUpperCase()));
+    logTypeMethod.body()._return(JExpr.lit(dataInterface.logType.replaceAll("\\-", "").toUpperCase()));
   }
 
   private JDefinedClass addInterface(DataInterface dataInterface) throws JClassAlreadyExistsException {
