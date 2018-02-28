@@ -102,33 +102,4 @@ public abstract class PaloAltoParser<T extends PaloAltoMessage> {
       );
     }
   }
-
-  protected InetAddress parseInetAddress(String[] fields, int index) {
-    log.trace("parseInteger() - index='{}' fields='{}'", index, fields);
-    final String input = parseString(fields, index);
-    if (null == input) {
-      return null;
-    }
-    try {
-      return InetAddress.getByName(input);
-    } catch (UnknownHostException e) {
-      throw new IllegalStateException(e);
-    }
-  }
-
-  protected BigInteger parseBigInteger(String[] fields, int index) {
-    log.trace("parseBigInteger() - index='{}' fields='{}'", index, fields);
-    final String input = parseString(fields, index);
-    if (null == input) {
-      return null;
-    }
-    try {
-      return new BigInteger(input);
-    } catch (NumberFormatException e) {
-      throw new IllegalStateException(
-          String.format("Exception thrown while parsing '%s' to BigInteger. index = %s", input, index),
-          e
-      );
-    }
-  }
 }
