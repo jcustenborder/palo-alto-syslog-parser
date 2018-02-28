@@ -1,7 +1,6 @@
 
 package com.github.jcustenborder.netty.paloalto;
 
-import java.net.InetAddress;
 import java.util.Date;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -51,7 +50,7 @@ public interface TrafficLogMessage
      */
     @Nullable
     @Index(7)
-    InetAddress sourceIp();
+    String sourceIp();
 
     /**
      * Original session destination IP address.
@@ -61,7 +60,7 @@ public interface TrafficLogMessage
      */
     @Nullable
     @Index(8)
-    InetAddress destinationIp();
+    String destinationIp();
 
     /**
      * If Source NAT performed, the post-NAT Source IP address.
@@ -71,7 +70,7 @@ public interface TrafficLogMessage
      */
     @Nullable
     @Index(9)
-    InetAddress natSourceIp();
+    String natSourceIp();
 
     /**
      * If Destination NAT performed, the post-NAT Destination IP address.
@@ -81,7 +80,7 @@ public interface TrafficLogMessage
      */
     @Nullable
     @Index(10)
-    InetAddress natDestinationIp();
+    String natDestinationIp();
 
     /**
      * Name of the rule that the session matched.

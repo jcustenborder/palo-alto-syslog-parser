@@ -1,7 +1,6 @@
 
 package com.github.jcustenborder.netty.paloalto;
 
-import java.net.InetAddress;
 import java.util.Date;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -73,7 +72,7 @@ public interface HipMatchLogMessage
      */
     @Nullable
     @Index(11)
-    InetAddress sourceIp();
+    String sourceIp();
 
     /**
      * Name of the HIP object or profile.

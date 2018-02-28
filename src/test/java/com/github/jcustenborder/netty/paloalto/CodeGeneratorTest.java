@@ -79,10 +79,10 @@ public class CodeGeneratorTest {
     Map<String, Class<?>> fieldTypeLookup = new LinkedHashMap<>();
     fieldTypeLookup.put("receiveTime", Date.class);
     fieldTypeLookup.put("generatedTime", Date.class);
-    fieldTypeLookup.put("sourceIp", InetAddress.class);
-    fieldTypeLookup.put("destinationIp", InetAddress.class);
-    fieldTypeLookup.put("natSourceIp", InetAddress.class);
-    fieldTypeLookup.put("natDestinationIp", InetAddress.class);
+    fieldTypeLookup.put("sourceIp", String.class);
+    fieldTypeLookup.put("destinationIp", String.class);
+    fieldTypeLookup.put("natSourceIp", String.class);
+    fieldTypeLookup.put("natDestinationIp", String.class);
     fieldTypeLookup.put("sessionId", Long.class);
     fieldTypeLookup.put("repeatCount", Long.class);
     fieldTypeLookup.put("sourcePort", Integer.class);

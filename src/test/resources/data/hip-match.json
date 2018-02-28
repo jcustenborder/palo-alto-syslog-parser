@@ -83,7 +83,7 @@
     "name" : "Source IP",
     "methodName" : "sourceIp",
     "doc" : "IP address of the source user.",
-    "type" : "java.net.InetAddress",
+    "type" : "java.lang.String",
     "skip" : false,
     "index" : 11
   }, {

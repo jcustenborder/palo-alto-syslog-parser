@@ -1,7 +1,6 @@
 
 package com.github.jcustenborder.netty.paloalto;
 
-import java.net.InetAddress;
 import java.util.Date;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -65,7 +64,7 @@ public interface ThreatLogMessage
      */
     @Nullable
     @Index(7)
-    InetAddress sourceIp();
+    String sourceIp();
 
     /**
      * Original session destination IP address.
@@ -75,7 +74,7 @@ public interface ThreatLogMessage
      */
     @Nullable
     @Index(8)
-    InetAddress destinationIp();
+    String destinationIp();
 
     /**
      * If source NAT performed, the post-NAT source IP address.
@@ -85,7 +84,7 @@ public interface ThreatLogMessage
      */
     @Nullable
     @Index(9)
-    InetAddress natSourceIp();
+    String natSourceIp();
 
     /**
      * If destination NAT performed, the post-NAT destination IP address.
@@ -95,7 +94,7 @@ public interface ThreatLogMessage
      */
     @Nullable
     @Index(10)
-    InetAddress natDestinationIp();
+    String natDestinationIp();
 
     /**
      * Name of the rule that the session matched.

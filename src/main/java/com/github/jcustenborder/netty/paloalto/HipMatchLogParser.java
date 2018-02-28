@@ -36,7 +36,7 @@ public class HipMatchLogParser
         log.trace("parse() - Processing field 10: os");
         builder.os(parseString(fields, 10));
         log.trace("parse() - Processing field 11: sourceIp");
-        builder.sourceIp(parseInetAddress(fields, 11));
+        builder.sourceIp(parseString(fields, 11));
         log.trace("parse() - Processing field 12: hip");
         builder.hip(parseString(fields, 12));
         log.trace("parse() - Processing field 13: repeatCount");

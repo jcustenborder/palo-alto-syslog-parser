@@ -55,28 +55,28 @@
     "name" : "Source IP",
     "methodName" : "sourceIp",
     "doc" : "Original session source IP address.",
-    "type" : "java.net.InetAddress",
+    "type" : "java.lang.String",
     "skip" : false,
     "index" : 7
   }, {
     "name" : "Destination IP",
     "methodName" : "destinationIp",
     "doc" : "Original session destination IP address.",
-    "type" : "java.net.InetAddress",
+    "type" : "java.lang.String",
     "skip" : false,
     "index" : 8
   }, {
     "name" : "NAT Source IP",
     "methodName" : "natSourceIp",
     "doc" : "If source NAT performed, the post-NAT source IP address.",
-    "type" : "java.net.InetAddress",
+    "type" : "java.lang.String",
     "skip" : false,
     "index" : 9
   }, {
     "name" : "NAT Destination IP",
     "methodName" : "natDestinationIp",
     "doc" : "If destination NAT performed, the post-NAT destination IP address.",
-    "type" : "java.net.InetAddress",
+    "type" : "java.lang.String",
     "skip" : false,
     "index" : 10
   }, {

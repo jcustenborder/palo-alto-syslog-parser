@@ -29,13 +29,13 @@ public class TrafficLogParser
         log.trace("parse() - Processing field 6: generatedTime");
         builder.generatedTime(parseDate(fields, 6));
         log.trace("parse() - Processing field 7: sourceIp");
-        builder.sourceIp(parseInetAddress(fields, 7));
+        builder.sourceIp(parseString(fields, 7));
         log.trace("parse() - Processing field 8: destinationIp");
-        builder.destinationIp(parseInetAddress(fields, 8));
+        builder.destinationIp(parseString(fields, 8));
         log.trace("parse() - Processing field 9: natSourceIp");
-        builder.natSourceIp(parseInetAddress(fields, 9));
+        builder.natSourceIp(parseString(fields, 9));
         log.trace("parse() - Processing field 10: natDestinationIp");
-        builder.natDestinationIp(parseInetAddress(fields, 10));
+        builder.natDestinationIp(parseString(fields, 10));
         log.trace("parse() - Processing field 11: ruleName");
         builder.ruleName(parseString(fields, 11));
         log.trace("parse() - Processing field 12: sourceUser");
