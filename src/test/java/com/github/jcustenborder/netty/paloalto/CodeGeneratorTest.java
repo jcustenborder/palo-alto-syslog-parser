@@ -51,6 +51,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -165,6 +167,9 @@ public class CodeGeneratorTest {
         .withSeparator('|')
         .build();
 
+    Path documentRoot = Paths.get("https://docs.oracle.com/javase/8/docs/api/");
+
+
     try (BufferedWriter builder = Files.newWriter(new File("target/README.md"), Charsets.UTF_8)) {
       Arrays.stream(inputFiles).forEach(f -> {
         try {
@@ -194,7 +199,10 @@ public class CodeGeneratorTest {
               builder.append('|');
 
               builder.append(
-                  parser.parseToLine(new String[]{field.name, field.type.getName()})
+                  parser.parseToLine(new String[]{
+                      field.name,
+                      String.format("[%s](%s)", field.type.getName(), documentRoot.resolve(field.type.getName().replace('.', '/') + ".html"))
+                  })
               );
               builder.append('|');
 
