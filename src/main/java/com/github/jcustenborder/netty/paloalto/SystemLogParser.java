@@ -23,8 +23,8 @@ public class SystemLogParser
         builder.serialNumber(parseString(fields, 2));
         log.trace("parse() - Processing field 3: type");
         builder.type(parseString(fields, 3));
-        log.trace("parse() - Processing field 4: contentThreatType");
-        builder.contentThreatType(parseString(fields, 4));
+        log.trace("parse() - Processing field 4: subType");
+        builder.subType(parseString(fields, 4));
         log.trace("parse() - Skipping field 5: futureUse");
         log.trace("parse() - Processing field 6: generatedTime");
         builder.generatedTime(parseDate(fields, 6));
@@ -45,7 +45,7 @@ public class SystemLogParser
         log.trace("parse() - Processing field 15: sequenceNumber");
         builder.sequenceNumber(parseLong(fields, 15));
         log.trace("parse() - Processing field 16: actionFlags");
-        builder.actionFlags(parseInteger(fields, 16));
+        builder.actionFlags(parseString(fields, 16));
         log.trace("parse() - Processing field 17: deviceGroupHierarchyLevel1");
         builder.deviceGroupHierarchyLevel1(parseString(fields, 17));
         log.trace("parse() - Processing field 18: deviceGroupHierarchyLevel2");

@@ -23,36 +23,38 @@ import com.github.jcustenborder.netty.syslog.BSDSyslogMessage;
 import com.github.jcustenborder.netty.syslog.RFC3164MessageParser;
 import com.github.jcustenborder.netty.syslog.SyslogRequest;
 import com.google.common.base.CaseFormat;
+import com.google.common.base.Charsets;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset;
+import com.google.common.io.FileWriteMode;
+import com.google.common.io.Files;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
-import java.util.LinkedHashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class PaloAltoMessageDecoderTest {
-
+  private static final Logger log = LoggerFactory.getLogger(PaloAltoMessageDecoderTest.class);
   PaloAltoMessageDecoder decoder;
   RFC3164MessageParser parser;
   SyslogRequest request;
@@ -79,40 +81,45 @@ public class PaloAltoMessageDecoderTest {
     });
   }
 
-  @TestFactory
-  public Stream<DynamicTest> generateTestData() throws IOException {
+  @Disabled
+  @Test
+  public void generateTestData() throws IOException {
     int index = 0;
-    List<String> lines = Files.readAllLines(Paths.get("src/test/resources/samples.txt"));
-    Map<String, String> storage = new LinkedHashMap<>(lines.size());
-    for (String l : lines) {
-      storage.put(String.format("%03d", index++), l);
-    }
+    List<String> lines = Files.readLines(new File("src/test/resources/samples.txt"), Charsets.UTF_8);
+
     Multiset<String> countByParser = HashMultiset.create();
-    return storage.entrySet().stream().map(i -> dynamicTest(i.getKey(), () -> {
-      when(this.request.rawMessage()).thenReturn(i.getValue());
-      List<Object> output = new ArrayList<>();
-      this.parser.parse(request, output);
-      assertFalse(output.isEmpty(), "output should not be false.");
-      assertTrue(output.get(0) instanceof BSDSyslogMessage, "output should contain RFC3164Message.");
-      BSDSyslogMessage rfc3164Message = (BSDSyslogMessage) output.get(0);
-      output.clear();
-      this.decoder.decode(null, rfc3164Message, output);
-      assertFalse(output.isEmpty(), "output should not be empty.");
-      assertTrue(output.get(0) instanceof PaloAltoMessage, "output should contain PaloAltoMessage.");
-      PaloAltoMessage paloAltoMessage = (PaloAltoMessage) output.get(0);
-      countByParser.add(paloAltoMessage.type());
-      int testNumber = countByParser.count(paloAltoMessage.type());
-      final String testFileName = String.format(
-          "%s%03d.json",
-          CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, paloAltoMessage.type()),
-          testNumber);
-      File parserOutputPath = new File(this.outputRoot, paloAltoMessage.type().toLowerCase());
-      File testOutputPath = new File(parserOutputPath, testFileName);
-      TestCase testCase = new TestCase();
-      testCase.input = rfc3164Message;
-      testCase.expected = paloAltoMessage;
-      this.mapper.writeValue(testOutputPath, testCase);
-    }));
+    int errorCount = 0;
+    for (String line : new HashSet<>(lines)) {
+      try {
+        when(this.request.rawMessage()).thenReturn(line);
+        List<Object> output = new ArrayList<>();
+        this.parser.parse(request, output);
+        assertFalse(output.isEmpty(), "output should not be false.");
+        assertTrue(output.get(0) instanceof BSDSyslogMessage, "output should contain RFC3164Message.");
+        BSDSyslogMessage rfc3164Message = (BSDSyslogMessage) output.get(0);
+        output.clear();
+        this.decoder.decode(null, rfc3164Message, output);
+        Preconditions.checkState(!output.isEmpty(), "output is empty.");
+        Preconditions.checkState(output.get(0) instanceof PaloAltoMessage, "output should contain PaloAltoMessage.");
+        PaloAltoMessage paloAltoMessage = (PaloAltoMessage) output.get(0);
+        countByParser.add(paloAltoMessage.type());
+        int testNumber = countByParser.count(paloAltoMessage.type());
+        final String testFileName = String.format(
+            "%s%03d.json",
+            CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, paloAltoMessage.type()),
+            testNumber);
+        File parserOutputPath = new File(this.outputRoot, paloAltoMessage.type().toLowerCase());
+        File testOutputPath = new File(parserOutputPath, testFileName);
+        TestCase testCase = new TestCase();
+        testCase.input = rfc3164Message;
+        testCase.expected = paloAltoMessage;
+        this.mapper.writeValue(testOutputPath, testCase);
+      } catch (Exception ex) {
+        log.error("Exception thrown", ex);
+        errorCount++;
+      }
+    }
+    assertEquals(0, errorCount, "errorCount should be 0.");
   }
 
   public static class TestCase {

@@ -8,9 +8,9 @@
         </encoder>
     </appender>
 
-    <logger name="com.github.jcustenborder.netty.syslog" level="TRACE" />
+    <logger name="com.github.jcustenborder.netty.syslog" level="INFO" />
 
-    <root level="TRACE">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>

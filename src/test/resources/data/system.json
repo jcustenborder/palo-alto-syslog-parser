@@ -32,7 +32,7 @@
     "index" : 3
   }, {
     "name" : "Content/Threat Type",
-    "methodName" : "contentThreatType",
+    "methodName" : "subType",
     "doc" : "Subtype of the system log; refers to the system daemon generating the log; values are crypto, dhcp, dnsproxy, dos, general, global-protect, ha, hw, nat, ntpd, pbf, port, pppoe, ras, routing, satd, sslmgr, sslvpn, userid, url-filtering, vpn.",
     "type" : "java.lang.String",
     "skip" : false,
@@ -118,7 +118,7 @@
     "name" : "Action Flags",
     "methodName" : "actionFlags",
     "doc" : "A bit field indicating if the log was forwarded to Panorama.",
-    "type" : "java.lang.Integer",
+    "type" : "java.lang.String",
     "skip" : false,
     "index" : 16
   }, {

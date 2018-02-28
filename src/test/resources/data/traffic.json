@@ -202,7 +202,7 @@
     "name" : "Flags",
     "methodName" : "flags",
     "doc" : "32-bit field that provides details on session; this field can be decoded by AND-ing the values with the logged value:\n0x80000000 —session has a packet capture (PCAP)\n0x02000000 —IPv6 session\n0x01000000 —SSL session was decrypted (SSL Proxy)\n0x00800000 —session was denied via URL filtering\n0x00400000 —session has a NAT translation performed (NAT)\n0x00200000 —user information for the session was captured through Captive Portal\n0x00080000 —X-Forwarded-For value from a proxy is in the source user field\n0x00040000 —log corresponds to a transaction within a http proxy session (Proxy Transaction)\n0x00008000 —session is a container page access (Container Page)\n0x00002000 —session has a temporary match on a rule for implicit application dependency handling. Available in PAN-OS 5.0.0 and above.\n0x00000800 —symmetric return was used to forward traffic for this session",
-    "type" : "java.lang.Integer",
+    "type" : "java.lang.Long",
     "skip" : false,
     "index" : 28
   }, {
@@ -286,7 +286,7 @@
     "name" : "Action Flags",
     "methodName" : "actionFlags",
     "doc" : "A bit field indicating if the log was forwarded to Panorama.",
-    "type" : "java.lang.Integer",
+    "type" : "java.lang.String",
     "skip" : false,
     "index" : 40
   }, {

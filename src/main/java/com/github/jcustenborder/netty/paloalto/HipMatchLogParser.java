@@ -48,7 +48,7 @@ public class HipMatchLogParser
         log.trace("parse() - Processing field 17: sequenceNumber");
         builder.sequenceNumber(parseLong(fields, 17));
         log.trace("parse() - Processing field 18: actionFlags");
-        builder.actionFlags(parseInteger(fields, 18));
+        builder.actionFlags(parseString(fields, 18));
         log.trace("parse() - Processing field 19: deviceGroupHierarchyLevel1");
         builder.deviceGroupHierarchyLevel1(parseString(fields, 19));
         log.trace("parse() - Processing field 20: deviceGroupHierarchyLevel2");

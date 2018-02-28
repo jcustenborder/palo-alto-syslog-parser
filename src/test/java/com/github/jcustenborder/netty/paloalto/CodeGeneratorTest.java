@@ -48,6 +48,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -91,8 +92,11 @@ public class CodeGeneratorTest {
     fieldTypeLookup.put("sequenceNumber", Long.class);
     fieldTypeLookup.put("packetsSent", Long.class);
     fieldTypeLookup.put("packetsReceived", Long.class);
-    fieldTypeLookup.put("actionFlags", Integer.class);
+    fieldTypeLookup.put("actionFlags", String.class);
+    fieldTypeLookup.put("flags", Long.class);
 
+    Map<String, String> methodReplace = new HashMap<>();
+    methodReplace.put("contentThreatType", "subType");
 
 
     return Arrays.stream(inputFiles).map(f -> dynamicTest(f.getName(), () -> {
@@ -113,6 +117,7 @@ public class CodeGeneratorTest {
         field.doc = field.doc.replaceAll("\\r\\n", "\n");
         field.methodName = field.name.replaceAll("[/\\s-]+", "_").toUpperCase();
         field.methodName = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, field.methodName);
+        field.methodName = methodReplace.getOrDefault(field.methodName, field.methodName);
         field.index = index;
         field.skip = SKIP_FIELDS.contains(fieldName);
         field.type = fieldTypeLookup.getOrDefault(field.methodName, String.class);

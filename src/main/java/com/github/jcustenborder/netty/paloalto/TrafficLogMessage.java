@@ -273,7 +273,7 @@ public interface TrafficLogMessage
      */
     @Nullable
     @Index(28)
-    Integer flags();
+    Long flags();
 
     /**
      * IP protocol associated with the session.
@@ -401,7 +401,7 @@ public interface TrafficLogMessage
      */
     @Nullable
     @Index(40)
-    Integer actionFlags();
+    String actionFlags();
 
     /**
      * Source country or Internal region for private addresses; maximum length is 32 bytes.

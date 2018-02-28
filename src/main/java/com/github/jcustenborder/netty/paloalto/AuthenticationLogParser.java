@@ -49,7 +49,7 @@ public class AuthenticationLogParser
         log.trace("parse() - Processing field 16: sequenceNumber");
         builder.sequenceNumber(parseLong(fields, 16));
         log.trace("parse() - Processing field 17: actionFlags");
-        builder.actionFlags(parseInteger(fields, 17));
+        builder.actionFlags(parseString(fields, 17));
         log.trace("parse() - Processing field 18: deviceGroupHierarchyLevel1");
         builder.deviceGroupHierarchyLevel1(parseString(fields, 18));
         log.trace("parse() - Processing field 19: deviceGroupHierarchyLevel2");

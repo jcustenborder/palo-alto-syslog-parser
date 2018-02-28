@@ -21,16 +21,23 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.github.jcustenborder.netty.syslog.RFC3164Message;
 import io.netty.channel.ChannelHandlerContext;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.TestFactory;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.mock;
 
-public abstract class PaloAltoParserTest<T extends PaloAltoMessage, P extends PaloAltoParser<T>> {
+public abstract class PaloAltoParserTest<M extends PaloAltoMessage, P extends PaloAltoParser<M>, T extends BaseTestCase<M>> {
   protected abstract P parser();
+  protected abstract Class<T> testCaseClass();
 
   protected ObjectMapper mapper;
   protected PaloAltoMessageDecoder decoder;
@@ -53,11 +60,21 @@ public abstract class PaloAltoParserTest<T extends PaloAltoMessage, P extends Pa
     this.inputFiles = this.inputRoot.listFiles((dir, name) -> name.endsWith(".json"));
   }
 
-  protected T parse(RFC3164Message message) throws Exception {
+  protected M parse(RFC3164Message message) throws Exception {
     ChannelHandlerContext channelHandlerContext = mock(ChannelHandlerContext.class);
     List<Object> output = new ArrayList<>();
     this.decoder.decode(channelHandlerContext, message, output);
     assertFalse(output.isEmpty(), "output should not be empty");
-    return (T) output.get(0);
+    return (M) output.get(0);
   }
+
+  @TestFactory
+  public Stream<DynamicTest> parse() {
+    return Arrays.stream(this.inputFiles).map(file -> dynamicTest(file.getName(), () -> {
+      final T testCase = this.mapper.readValue(file, testCaseClass());
+      final M actual = parse(testCase.input);
+      assertEquals(testCase.expected, actual);
+    }));
+  }
+
 }

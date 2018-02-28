@@ -22,7 +22,7 @@ public interface SystemLogMessage
      */
     @Nullable
     @Index(4)
-    String contentThreatType();
+    String subType();
 
     /**
      * Time the log was generated on the dataplane.
@@ -112,7 +112,7 @@ public interface SystemLogMessage
      */
     @Nullable
     @Index(16)
-    Integer actionFlags();
+    String actionFlags();
 
     /**
      * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.

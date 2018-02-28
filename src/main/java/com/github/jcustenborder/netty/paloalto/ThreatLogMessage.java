@@ -287,7 +287,7 @@ public interface ThreatLogMessage
      */
     @Nullable
     @Index(28)
-    String flags();
+    Long flags();
 
     /**
      * IP protocol associated with the session.
@@ -425,7 +425,7 @@ public interface ThreatLogMessage
      */
     @Nullable
     @Index(37)
-    Integer actionFlags();
+    String actionFlags();
 
     /**
      * Source country or Internal region for private addresses. Maximum length is 32 bytes.

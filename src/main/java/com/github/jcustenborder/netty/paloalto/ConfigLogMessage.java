@@ -146,7 +146,7 @@ public interface ConfigLogMessage
      */
     @Nullable
     @Index(17)
-    Integer actionFlags();
+    String actionFlags();
 
     /**
      * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.

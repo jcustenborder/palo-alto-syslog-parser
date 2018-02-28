@@ -70,7 +70,7 @@ public class TrafficLogParser
         log.trace("parse() - Processing field 27: natDestinationPort");
         builder.natDestinationPort(parseInteger(fields, 27));
         log.trace("parse() - Processing field 28: flags");
-        builder.flags(parseInteger(fields, 28));
+        builder.flags(parseLong(fields, 28));
         log.trace("parse() - Processing field 29: protocol");
         builder.protocol(parseString(fields, 29));
         log.trace("parse() - Processing field 30: action");
@@ -93,7 +93,7 @@ public class TrafficLogParser
         log.trace("parse() - Processing field 39: sequenceNumber");
         builder.sequenceNumber(parseLong(fields, 39));
         log.trace("parse() - Processing field 40: actionFlags");
-        builder.actionFlags(parseInteger(fields, 40));
+        builder.actionFlags(parseString(fields, 40));
         log.trace("parse() - Processing field 41: sourceLocation");
         builder.sourceLocation(parseString(fields, 41));
         log.trace("parse() - Processing field 42: destinationLocation");

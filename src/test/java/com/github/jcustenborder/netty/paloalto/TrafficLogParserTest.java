@@ -15,37 +15,14 @@
  */
 package com.github.jcustenborder.netty.paloalto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jcustenborder.netty.syslog.BSDSyslogMessage;
-import com.github.jcustenborder.netty.syslog.RFC3164Message;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.TestFactory;
-
-import java.util.Arrays;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.DynamicTest.dynamicTest;
-
-public class TrafficLogParserTest extends PaloAltoParserTest<TrafficLogMessage, TrafficLogParser> {
+public class TrafficLogParserTest extends PaloAltoParserTest<TrafficLogMessage, TrafficLogParser, TrafficLogParserTestCase> {
   @Override
   protected TrafficLogParser parser() {
     return new TrafficLogParser();
   }
 
-  @TestFactory
-  public Stream<DynamicTest> parse() {
-    return Arrays.stream(this.inputFiles).map(file -> dynamicTest(file.getName(), () -> {
-      final TestCase testCase = this.mapper.readValue(file, TestCase.class);
-      final TrafficLogMessage actual = parse(testCase.input);
-      assertEquals(testCase.expected, actual);
-    }));
-  }
-
-  public static class TestCase {
-    @JsonProperty
-    public BSDSyslogMessage input;
-    @JsonProperty
-    public TrafficLogMessage expected;
+  @Override
+  protected Class<TrafficLogParserTestCase> testCaseClass() {
+    return TrafficLogParserTestCase.class;
   }
 }

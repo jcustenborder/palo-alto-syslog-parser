@@ -132,7 +132,7 @@
     "name" : "Action Flags",
     "methodName" : "actionFlags",
     "doc" : "A bit field indicating if the log was forwarded to Panorama.",
-    "type" : "java.lang.Integer",
+    "type" : "java.lang.String",
     "skip" : false,
     "index" : 18
   }, {

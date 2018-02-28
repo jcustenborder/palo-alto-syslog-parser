@@ -70,7 +70,7 @@ public class ThreatLogParser
         log.trace("parse() - Processing field 27: natDestinationPort");
         builder.natDestinationPort(parseInteger(fields, 27));
         log.trace("parse() - Processing field 28: flags");
-        builder.flags(parseString(fields, 28));
+        builder.flags(parseLong(fields, 28));
         log.trace("parse() - Processing field 29: protocol");
         builder.protocol(parseString(fields, 29));
         log.trace("parse() - Processing field 30: action");
@@ -88,7 +88,7 @@ public class ThreatLogParser
         log.trace("parse() - Processing field 36: sequenceNumber");
         builder.sequenceNumber(parseLong(fields, 36));
         log.trace("parse() - Processing field 37: actionFlags");
-        builder.actionFlags(parseInteger(fields, 37));
+        builder.actionFlags(parseString(fields, 37));
         log.trace("parse() - Processing field 38: sourceLocation");
         builder.sourceLocation(parseString(fields, 38));
         log.trace("parse() - Processing field 39: destinationLocation");
