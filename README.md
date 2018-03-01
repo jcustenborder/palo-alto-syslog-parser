@@ -54,247 +54,248 @@ class MyPaloAltoMessageHandler extends SimpleChannelInboundHandler<TrafficLogMes
 
 # TrafficLogMessage
 
-|Name|Type|
-|----|----|
-|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Threat/Content Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Source IP|[java.net.InetAddress](https:/docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)|
-|Destination IP|[java.net.InetAddress](https:/docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)|
-|NAT Source IP|[java.net.InetAddress](https:/docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)|
-|NAT Destination IP|[java.net.InetAddress](https:/docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)|
-|Rule Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Source User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Destination User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Application|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Source Zone|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Destination Zone|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Inbound Interface|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Outbound Interface|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Log Action|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Session ID|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Repeat Count|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Source Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
-|Destination Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
-|NAT Source Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
-|NAT Destination Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
-|Flags|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Protocol|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Action|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Bytes|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Bytes Sent|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Bytes Received|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Packets|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Start Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Elapsed Time|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Category|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Source Location|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Destination Location|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Packets Sent|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Packets Received|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Session End Reason|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Action Source|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Source VM UUID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Destination VM UUID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Tunnel ID/IMSI|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Monitor Tag/IMEI|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Parent Session ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Parent Start Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Tunnel Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|Name|Description|Type|
+|----|-----------|----|
+|receiveTime|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|serialNumber|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|type|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|threatContentType|Threat/Content Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|generatedTime|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|sourceIp|Source IP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationIp|Destination IP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|natSourceIp|NAT Source IP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|natDestinationIp|NAT Destination IP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|ruleName|Rule Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sourceUser|Source User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationUser|Destination User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|application|Application|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystem|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sourceZone|Source Zone|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationZone|Destination Zone|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|inboundInterface|Inbound Interface|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|outboundInterface|Outbound Interface|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|logAction|Log Action|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sessionId|Session ID|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|repeatCount|Repeat Count|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|sourcePort|Source Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
+|destinationPort|Destination Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
+|natSourcePort|NAT Source Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
+|natDestinationPort|NAT Destination Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
+|flags|Flags|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|protocol|Protocol|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|action|Action|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|bytes|Bytes|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|bytesSent|Bytes Sent|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|bytesReceived|Bytes Received|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|packets|Packets|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|startTime|Start Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|elapsedTime|Elapsed Time|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|category|Category|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sequenceNumber|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|actionFlags|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sourceLocation|Source Location|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationLocation|Destination Location|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|packetsSent|Packets Sent|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|packetsReceived|Packets Received|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|sessionEndReason|Session End Reason|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel1|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel2|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel3|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel4|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystemName|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceName|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|actionSource|Action Source|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sourceVmUuid|Source VM UUID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationVmUuid|Destination VM UUID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|tunnelIdImsi|Tunnel ID/IMSI|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|monitorTagImei|Monitor Tag/IMEI|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|parentSessionId|Parent Session ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|parentStartTime|Parent Start Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|tunnelType|Tunnel Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
 
 # ConfigLogMessage
 
-|Name|Type|
-|----|----|
-|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Subtype|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Host|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Command|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Admin|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Client|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Result|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Configuration Path|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Before Change Detail|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|After Change Detail|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|Name|Description|Type|
+|----|-----------|----|
+|receiveTime|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|serialNumber|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|type|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|subtype|Subtype|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|generatedTime|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|host|Host|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystem|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|command|Command|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|admin|Admin|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|client|Client|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|result|Result|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|configurationPath|Configuration Path|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|beforeChangeDetail|Before Change Detail|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|afterChangeDetail|After Change Detail|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sequenceNumber|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|actionFlags|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel1|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel2|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel3|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel4|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystemName|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceName|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
 
 # AuthenticationLogMessage
 
-|Name|Type|
-|----|----|
-|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Subtype|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Host|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Command|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Admin|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Client|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Result|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Configuration Path|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Before Change Detail|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|After Change Detail|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|Name|Description|Type|
+|----|-----------|----|
+|receiveTime|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|serialNumber|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|type|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|subtype|Subtype|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|generatedTime|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|host|Host|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystem|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|command|Command|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|admin|Admin|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|client|Client|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|result|Result|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|configurationPath|Configuration Path|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|beforeChangeDetail|Before Change Detail|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|afterChangeDetail|After Change Detail|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sequenceNumber|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|actionFlags|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel1|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel2|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel3|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel4|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystemName|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceName|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
 
 # ThreatLogMessage
 
-|Name|Type|
-|----|----|
-|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Threat/Content Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Source IP|[java.net.InetAddress](https:/docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)|
-|Destination IP|[java.net.InetAddress](https:/docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)|
-|NAT Source IP|[java.net.InetAddress](https:/docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)|
-|NAT Destination IP|[java.net.InetAddress](https:/docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)|
-|Rule Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Source User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Destination User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Application|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Source Zone|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Destination Zone|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Inbound Interface|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Outbound Interface|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Log Action|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Session ID|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Repeat Count|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Source Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
-|Destination Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
-|NAT Source Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
-|NAT Destination Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
-|Flags|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Protocol|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Action|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|URL/Filename|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Threat ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Category|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Severity|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Direction|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Source Location|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Destination Location|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Content Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|PCAP ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|File Digest|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Cloud|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|URL Index|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|User Agent|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|File Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|X-Forwarded-For|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Referer|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Sender|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Subject|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Recipient|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Report ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Source VM UUID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Destination VM UUID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|HTTP Method|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Tunnel ID/IMSI|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Monitor Tag/IMEI|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Parent Session ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Parent Start Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Tunnel Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Threat Category|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Content Version|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|Name|Description|Type|
+|----|-----------|----|
+|receiveTime|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|serialNumber|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|type|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|threatContentType|Threat/Content Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|generatedTime|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|sourceIp|Source IP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationIp|Destination IP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|natSourceIp|NAT Source IP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|natDestinationIp|NAT Destination IP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|ruleName|Rule Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sourceUser|Source User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationUser|Destination User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|application|Application|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystem|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sourceZone|Source Zone|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationZone|Destination Zone|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|inboundInterface|Inbound Interface|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|outboundInterface|Outbound Interface|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|logAction|Log Action|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sessionId|Session ID|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|repeatCount|Repeat Count|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|sourcePort|Source Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
+|destinationPort|Destination Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
+|natSourcePort|NAT Source Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
+|natDestinationPort|NAT Destination Port|[java.lang.Integer](https:/docs.oracle.com/javase/8/docs/api/java/lang/Integer.html)|
+|flags|Flags|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|protocol|Protocol|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|action|Action|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|urlFilename|URL/Filename|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|threatId|Threat ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|category|Category|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|severity|Severity|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|direction|Direction|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sequenceNumber|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|actionFlags|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sourceLocation|Source Location|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationLocation|Destination Location|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|contentType|Content Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|pcapId|PCAP ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|fileDigest|File Digest|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|cloud|Cloud|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|urlIndex|URL Index|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|userAgent|User Agent|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|fileType|File Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|xForwardedFor|X-Forwarded-For|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|referer|Referer|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sender|Sender|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|subject|Subject|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|recipient|Recipient|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|reportId|Report ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel1|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel2|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel3|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel4|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystemName|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceName|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sourceVmUuid|Source VM UUID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|destinationVmUuid|Destination VM UUID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|httpMethod|HTTP Method|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|tunnelIdImsi|Tunnel ID/IMSI|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|monitorTagImei|Monitor Tag/IMEI|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|parentSessionId|Parent Session ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|parentStartTime|Parent Start Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|tunnelType|Tunnel Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|threatCategory|Threat Category|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|contentVersion|Content Version|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
 
 # UserIdLogMessage
 
-|Name|Type|
-|----|----|
-|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Threat/Content Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|Name|Description|Type|
+|----|-----------|----|
+|receiveTime|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|serialNumber|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|type|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|threatContentType|Threat/Content Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|generatedTime|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
 
 # HipMatchLogMessage
 
-|Name|Type|
-|----|----|
-|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Source User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Machine Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|OS|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Source IP|[java.net.InetAddress](https:/docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html)|
-|HIP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Repeat Count|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|HIP Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|IPv6 Source Ip|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|Name|Description|Type|
+|----|-----------|----|
+|receiveTime|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|serialNumber|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|type|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|generatedTime|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|sourceUser|Source User|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystem|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|machineName|Machine Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|os|OS|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sourceIp|Source IP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|hip|HIP|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|repeatCount|Repeat Count|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|hipType|HIP Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sequenceNumber|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|actionFlags|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel1|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel2|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel3|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel4|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystemName|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceName|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystemId|Virtual System ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|ipv6SourceIp|IPv6 Source Ip|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
 
 # SystemLogMessage
 
-|Name|Type|
-|----|----|
-|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Content/Threat Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
-|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Event ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Object|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Module|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Severity|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Description|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
-|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
-|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|Name|Description|Type|
+|----|-----------|----|
+|receiveTime|Receive Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|serialNumber|Serial Number|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|type|Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|subType|Content/Threat Type|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|generatedTime|Generated Time|[java.util.Date](https:/docs.oracle.com/javase/8/docs/api/java/util/Date.html)|
+|virtualSystem|Virtual System|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|eventId|Event ID|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|object|Object|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|module|Module|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|severity|Severity|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|description|Description|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|sequenceNumber|Sequence Number|[java.lang.Long](https:/docs.oracle.com/javase/8/docs/api/java/lang/Long.html)|
+|actionFlags|Action Flags|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel1|Device Group Hierarchy Level 1|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel2|Device Group Hierarchy Level 2|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel3|Device Group Hierarchy Level 3|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceGroupHierarchyLevel4|Device Group Hierarchy Level 4|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|virtualSystemName|Virtual System Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+|deviceName|Device Name|[java.lang.String](https:/docs.oracle.com/javase/8/docs/api/java/lang/String.html)|
+
