@@ -32,12 +32,14 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.mock;
 
 public abstract class PaloAltoParserTest<M extends PaloAltoMessage, P extends PaloAltoParser<M>, T extends BaseTestCase<M>> {
   protected abstract P parser();
   protected abstract Class<T> testCaseClass();
+  protected abstract void assertMessage(M expected, M actual);
 
   protected ObjectMapper mapper;
   protected PaloAltoMessageDecoder decoder;
@@ -73,7 +75,7 @@ public abstract class PaloAltoParserTest<M extends PaloAltoMessage, P extends Pa
     return Arrays.stream(this.inputFiles).map(file -> dynamicTest(file.getName(), () -> {
       final T testCase = this.mapper.readValue(file, testCaseClass());
       final M actual = parse(testCase.input);
-      assertEquals(testCase.expected, actual);
+      assertMessage(testCase.expected, actual);
     }));
   }
 

@@ -18,23 +18,23 @@ package com.github.jcustenborder.netty.paloalto;
 
 import org.junit.jupiter.api.Assertions;
 
-public class ConfigLogParserTest
-    extends PaloAltoParserTest<ConfigLogMessage, ConfigLogParser, ConfigLogParserTestCase>
+public class AuthenticationLogParserTest
+    extends PaloAltoParserTest<AuthenticationLogMessage, AuthenticationLogParser, AuthenticationLogParserTestCase>
 {
 
 
     @Override
-    protected ConfigLogParser parser() {
-        return new ConfigLogParser();
+    protected AuthenticationLogParser parser() {
+        return new AuthenticationLogParser();
     }
 
     @Override
-    protected Class<ConfigLogParserTestCase> testCaseClass() {
-        return ConfigLogParserTestCase.class;
+    protected Class<AuthenticationLogParserTestCase> testCaseClass() {
+        return AuthenticationLogParserTestCase.class;
     }
 
     @Override
-    protected void assertMessage(ConfigLogMessage expected, ConfigLogMessage actual) {
+    protected void assertMessage(AuthenticationLogMessage expected, AuthenticationLogMessage actual) {
         if (null!= expected) {
             Assertions.assertNotNull(actual, "actual should not be null.");
         } else {

@@ -34,6 +34,10 @@ public class DataInterface {
     return String.format("%s.%sMessage", this.getClass().getPackage().getName(), this.name);
   }
 
+  public String parserTestName() {
+    return String.format("%s.%sParserTest", this.getClass().getPackage().getName(), this.name);
+  }
+
   public String parserName() {
     return String.format("%s.%sParser", this.getClass().getPackage().getName(), this.name);
   }

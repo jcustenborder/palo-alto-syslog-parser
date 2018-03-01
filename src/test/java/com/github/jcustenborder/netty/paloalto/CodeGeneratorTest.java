@@ -32,6 +32,7 @@ import com.sun.codemodel.ClassType;
 import com.sun.codemodel.JClass;
 import com.sun.codemodel.JClassAlreadyExistsException;
 import com.sun.codemodel.JCodeModel;
+import com.sun.codemodel.JConditional;
 import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JExpr;
 import com.sun.codemodel.JFieldVar;
@@ -40,7 +41,9 @@ import com.sun.codemodel.JMod;
 import com.sun.codemodel.JVar;
 import org.immutables.value.Value;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
@@ -50,7 +53,6 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -63,6 +65,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
+@Disabled
 public class CodeGeneratorTest {
   private static final Logger log = LoggerFactory.getLogger(CodeGeneratorTest.class);
 
@@ -217,6 +220,71 @@ public class CodeGeneratorTest {
         }
       });
     }
+  }
+
+  @Test
+  public void generateTestClasses() throws IOException {
+    JCodeModel model = new JCodeModel();
+    JClass parserTestClass = (JClass) model.ref("com.github.jcustenborder.netty.paloalto.PaloAltoParserTest");
+    JClass classClass = (JClass) model.ref(Class.class);
+    JClass assertionsClass = (JClass) model.ref(Assertions.class);
+    JClass baseTestCaseClass = (JClass) model.ref(BaseTestCase.class);
+
+    Arrays.stream(inputFiles).forEach(f -> {
+      try {
+        DataInterface dataInterface = mapper.readValue(f, DataInterface.class);
+        JClass messageClass = (JClass) model.ref(dataInterface.messageName());
+        JClass narrowedTestCaseClass = baseTestCaseClass.narrow(messageClass);
+
+        JDefinedClass parserTestCaseClass = model._class(JMod.PUBLIC, dataInterface.parserTestName() + "Case", ClassType.CLASS);
+        parserTestCaseClass._extends(narrowedTestCaseClass);
+
+
+        JDefinedClass testclass = model._class(JMod.PUBLIC, dataInterface.parserTestName(), ClassType.CLASS);
+
+
+        JClass parserClass = (JClass) model.ref(dataInterface.parserName());
+
+        JClass narrowedTestClass = parserTestClass.narrow(messageClass).narrow(parserClass).narrow(parserTestCaseClass);
+        JClass narrowedTestClassClass = classClass.narrow(parserTestCaseClass);
+        testclass._extends(narrowedTestClass);
+
+        JMethod parserMethod = testclass.method(JMod.PROTECTED, parserClass, "parser");
+        parserMethod.annotate(Override.class);
+        parserMethod.body()._return(JExpr._new(parserClass));
+
+        JMethod testCaseClassMethod = testclass.method(JMod.PROTECTED, narrowedTestClassClass, "testCaseClass");
+        testCaseClassMethod.annotate(Override.class);
+        testCaseClassMethod.body()._return(parserTestCaseClass.dotclass());
+
+        JMethod assertMessageMethod = testclass.method(JMod.PROTECTED, Void.TYPE, "assertMessage");
+        assertMessageMethod.annotate(Override.class);
+        JVar expected = assertMessageMethod.param(messageClass, "expected");
+        JVar actual = assertMessageMethod.param(messageClass, "actual");
+
+        JConditional conditional = assertMessageMethod.body()._if(JExpr._null().ne(expected));
+        conditional._then().staticInvoke(assertionsClass, "assertNotNull")
+            .arg(actual)
+            .arg("actual should not be null.");
+        conditional._else().staticInvoke(assertionsClass, "assertNull")
+            .arg(actual)
+            .arg("actual should be null.");
+
+
+        dataInterface.fields.stream().filter(field -> field.shouldDefine()).forEach(field -> {
+          assertMessageMethod.body().staticInvoke(assertionsClass, "assertEquals")
+              .arg(expected.invoke(field.methodName))
+              .arg(actual.invoke(field.methodName))
+              .arg(String.format("%s() should match", field.methodName));
+        });
+      } catch (Exception e) {
+
+      }
+    });
+
+    File outputPath = new File("src/test/java");
+    outputPath.mkdirs();
+    model.build(outputPath);
   }
 
   @TestFactory

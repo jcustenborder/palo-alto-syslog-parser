@@ -17,8 +17,8 @@
 package com.github.jcustenborder.netty.paloalto;
 
 
-public class TrafficLogParserTestCase
-    extends BaseTestCase<TrafficLogMessage>
+public class HipMatchLogParserTestCase
+    extends BaseTestCase<HipMatchLogMessage>
 {
 
 
