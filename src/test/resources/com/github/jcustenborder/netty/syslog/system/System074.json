@@ -13,7 +13,7 @@
   },
   "expected" : {
     "subType" : "globalprotect",
-    "generatedTime" : 1453694501000,
+    "generatedTime" : 1453672901000,
     "virtualSystem" : null,
     "eventId" : "globalprotectgateway-config-release",
     "object" : "VPN-GW-N",
@@ -28,7 +28,7 @@
     "deviceGroupHierarchyLevel4" : "0",
     "virtualSystemName" : null,
     "deviceName" : "PA-VM",
-    "receiveTime" : 1453694766000,
+    "receiveTime" : 1453673166000,
     "serialNumber" : "007200001165",
     "type" : "SYSTEM",
     "tag" : null,

@@ -13,7 +13,7 @@
   },
   "expected" : {
     "threatContentType" : "file",
-    "generatedTime" : 1326008847000,
+    "generatedTime" : 1325987247000,
     "sourceIp" : "217.31.49.10",
     "destinationIp" : "192.168.0.2",
     "natSourceIp" : "0.0.0.0",
@@ -75,7 +75,7 @@
     "tunnelType" : null,
     "threatCategory" : null,
     "contentVersion" : null,
-    "receiveTime" : 1326008852000,
+    "receiveTime" : 1325987252000,
     "serialNumber" : "001606001116",
     "type" : "THREAT",
     "tag" : null,

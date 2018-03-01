@@ -13,7 +13,7 @@
   },
   "expected" : {
     "subType" : "ras",
-    "generatedTime" : 1326121372000,
+    "generatedTime" : 1326099772000,
     "virtualSystem" : null,
     "eventId" : "rasmgr-config-p2-success",
     "object" : null,
@@ -28,7 +28,7 @@
     "deviceGroupHierarchyLevel4" : null,
     "virtualSystemName" : null,
     "deviceName" : null,
-    "receiveTime" : 1326121372000,
+    "receiveTime" : 1326099772000,
     "serialNumber" : "001606001116",
     "type" : "SYSTEM",
     "tag" : null,

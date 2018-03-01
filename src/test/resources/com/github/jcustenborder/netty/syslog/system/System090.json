@@ -13,7 +13,7 @@
   },
   "expected" : {
     "subType" : "globalprotect",
-    "generatedTime" : 1453696884000,
+    "generatedTime" : 1453675284000,
     "virtualSystem" : null,
     "eventId" : "globalprotectportal-config-succ",
     "object" : "GP-Portal-1",
@@ -28,7 +28,7 @@
     "deviceGroupHierarchyLevel4" : "0",
     "virtualSystemName" : null,
     "deviceName" : "PA-VM",
-    "receiveTime" : 1453697161000,
+    "receiveTime" : 1453675561000,
     "serialNumber" : "007200001165",
     "type" : "SYSTEM",
     "tag" : null,

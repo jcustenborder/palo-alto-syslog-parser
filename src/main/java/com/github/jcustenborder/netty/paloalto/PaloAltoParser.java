@@ -19,15 +19,18 @@ import com.github.jcustenborder.netty.syslog.RFC3164Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.math.BigInteger;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public abstract class PaloAltoParser<T extends PaloAltoMessage> {
   private static final Logger log = LoggerFactory.getLogger(PaloAltoParser.class);
+
+  public PaloAltoParser() {
+    this.format = new SimpleDateFormat("yyyy/MM/DD hh:mm:ss");
+    this.format.setTimeZone(TimeZone.getTimeZone("UTC"));
+  }
 
   public abstract String logType();
 
@@ -48,7 +51,7 @@ public abstract class PaloAltoParser<T extends PaloAltoMessage> {
     return result;
   }
 
-  SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/DD hh:mm:ss");
+  final SimpleDateFormat format;
 
   protected Date parseDate(String[] fields, int index) {
     log.trace("parseDate() - index='{}' fields='{}'", index, fields);

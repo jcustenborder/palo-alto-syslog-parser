@@ -13,7 +13,7 @@
   },
   "expected" : {
     "subType" : "vpn",
-    "generatedTime" : 1326020345000,
+    "generatedTime" : 1325998745000,
     "virtualSystem" : null,
     "eventId" : "ike-config-p1-success",
     "object" : null,
@@ -28,7 +28,7 @@
     "deviceGroupHierarchyLevel4" : null,
     "virtualSystemName" : null,
     "deviceName" : null,
-    "receiveTime" : 1326020345000,
+    "receiveTime" : 1325998745000,
     "serialNumber" : "001606001116",
     "type" : "SYSTEM",
     "tag" : null,

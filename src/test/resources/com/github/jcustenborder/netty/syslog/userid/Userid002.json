@@ -13,8 +13,8 @@
   },
   "expected" : {
     "threatContentType" : "login",
-    "generatedTime" : 1359355985000,
-    "receiveTime" : 1359355985000,
+    "generatedTime" : 1359334385000,
+    "receiveTime" : 1359334385000,
     "serialNumber" : "001701000225",
     "type" : "USERID",
     "tag" : null,

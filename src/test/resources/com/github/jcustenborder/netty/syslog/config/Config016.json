@@ -13,7 +13,7 @@
   },
   "expected" : {
     "subtype" : "0",
-    "generatedTime" : 1326013475000,
+    "generatedTime" : 1325991875000,
     "host" : "192.168.0.2",
     "virtualSystem" : null,
     "command" : "set",
@@ -31,7 +31,7 @@
     "deviceGroupHierarchyLevel4" : null,
     "virtualSystemName" : null,
     "deviceName" : null,
-    "receiveTime" : 1326013475000,
+    "receiveTime" : 1325991875000,
     "serialNumber" : "001606001116",
     "type" : "CONFIG",
     "tag" : null,

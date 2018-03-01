@@ -66,7 +66,7 @@ public class PaloAltoMessageDecoderTest {
     this.parser = new RFC3164MessageParser();
     this.request = mock(SyslogRequest.class);
     when(this.request.receivedDate()).thenReturn(new Date(1519755720000L));
-    when(this.request.remoteAddress()).thenReturn(InetAddress.getLocalHost());
+    when(this.request.remoteAddress()).thenReturn(InetAddress.getByName("127.0.0.1"));
     this.decoder = new PaloAltoMessageDecoder();
     this.mapper = new ObjectMapper();
     this.mapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
@@ -81,11 +81,11 @@ public class PaloAltoMessageDecoderTest {
     });
   }
 
-  @Disabled
+//  @Disabled
   @Test
   public void generateTestData() throws IOException {
     int index = 0;
-    List<String> lines = Files.readLines(new File("src/test/resources/samples.txt"), Charsets.UTF_8);
+    List<String> lines = Files.readLines(new File("samples.txt"), Charsets.UTF_8);
 
     Multiset<String> countByParser = HashMultiset.create();
     int errorCount = 0;
@@ -94,8 +94,8 @@ public class PaloAltoMessageDecoderTest {
         when(this.request.rawMessage()).thenReturn(line);
         List<Object> output = new ArrayList<>();
         this.parser.parse(request, output);
-        assertFalse(output.isEmpty(), "output should not be false.");
-        assertTrue(output.get(0) instanceof BSDSyslogMessage, "output should contain RFC3164Message.");
+//        assertFalse(output.isEmpty(), "output should not be false.");
+//        assertTrue(output.get(0) instanceof BSDSyslogMessage, "output should contain RFC3164Message.");
         BSDSyslogMessage rfc3164Message = (BSDSyslogMessage) output.get(0);
         output.clear();
         this.decoder.decode(null, rfc3164Message, output);

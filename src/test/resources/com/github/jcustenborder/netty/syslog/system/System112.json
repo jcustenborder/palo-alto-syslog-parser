@@ -13,7 +13,7 @@
   },
   "expected" : {
     "subType" : "routing",
-    "generatedTime" : 1327474669000,
+    "generatedTime" : 1327453069000,
     "virtualSystem" : null,
     "eventId" : "routed-config-p1-success",
     "object" : null,
@@ -28,7 +28,7 @@
     "deviceGroupHierarchyLevel4" : null,
     "virtualSystemName" : null,
     "deviceName" : null,
-    "receiveTime" : 1326173005000,
+    "receiveTime" : 1326151405000,
     "serialNumber" : "001606001116",
     "type" : "SYSTEM",
     "tag" : null,
