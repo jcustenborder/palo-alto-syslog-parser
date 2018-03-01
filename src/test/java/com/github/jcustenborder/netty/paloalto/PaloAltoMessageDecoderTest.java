@@ -81,7 +81,7 @@ public class PaloAltoMessageDecoderTest {
     });
   }
 
-//  @Disabled
+  @Disabled
   @Test
   public void generateTestData() throws IOException {
     int index = 0;
@@ -94,6 +94,7 @@ public class PaloAltoMessageDecoderTest {
         when(this.request.rawMessage()).thenReturn(line);
         List<Object> output = new ArrayList<>();
         this.parser.parse(request, output);
+
 //        assertFalse(output.isEmpty(), "output should not be false.");
 //        assertTrue(output.get(0) instanceof BSDSyslogMessage, "output should contain RFC3164Message.");
         BSDSyslogMessage rfc3164Message = (BSDSyslogMessage) output.get(0);
