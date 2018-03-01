@@ -1,0 +1,433 @@
+{
+  "name" : "TrafficLog",
+  "logType" : "traffic",
+  "doc" : null,
+  "fields" : [ {
+    "name" : "FUTURE_USE",
+    "methodName" : "futureUse",
+    "doc" : "",
+    "type" : "java.lang.String",
+    "skip" : true,
+    "index" : 0
+  }, {
+    "name" : "Receive Time",
+    "methodName" : "receiveTime",
+    "doc" : "Time the log was received at the management plane.",
+    "type" : "java.util.Date",
+    "skip" : false,
+    "index" : 1
+  }, {
+    "name" : "Serial Number",
+    "methodName" : "serialNumber",
+    "doc" : "Serial number of the firewall that generated the log.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 2
+  }, {
+    "name" : "Type",
+    "methodName" : "type",
+    "doc" : "Specifies type of log; values are traffic, threat, config, system and hip-match.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 3
+  }, {
+    "name" : "Threat/Content Type",
+    "methodName" : "threatContentType",
+    "doc" : "Subtype of traffic log; values are start, end, drop, and deny\nStart—session started\nEnd—session ended\nDrop—session dropped before the application is identified and there is no rule that allows the session. \nDeny—session dropped after the application is identified and there is a rule to block or no rule that allows the session.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 4
+  }, {
+    "name" : "FUTURE_USE",
+    "methodName" : "futureUse",
+    "doc" : "",
+    "type" : "java.lang.String",
+    "skip" : true,
+    "index" : 5
+  }, {
+    "name" : "Generated Time",
+    "methodName" : "generatedTime",
+    "doc" : "Time the log was generated on the dataplane.",
+    "type" : "java.util.Date",
+    "skip" : false,
+    "index" : 6
+  }, {
+    "name" : "Source IP",
+    "methodName" : "sourceIp",
+    "doc" : "Original session source IP address.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 7
+  }, {
+    "name" : "Destination IP",
+    "methodName" : "destinationIp",
+    "doc" : "Original session destination IP address.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 8
+  }, {
+    "name" : "NAT Source IP",
+    "methodName" : "natSourceIp",
+    "doc" : "If Source NAT performed, the post-NAT Source IP address.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 9
+  }, {
+    "name" : "NAT Destination IP",
+    "methodName" : "natDestinationIp",
+    "doc" : "If Destination NAT performed, the post-NAT Destination IP address.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 10
+  }, {
+    "name" : "Rule Name",
+    "methodName" : "ruleName",
+    "doc" : "Name of the rule that the session matched.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 11
+  }, {
+    "name" : "Source User",
+    "methodName" : "sourceUser",
+    "doc" : "Username of the user who initiated the session.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 12
+  }, {
+    "name" : "Destination User",
+    "methodName" : "destinationUser",
+    "doc" : "Username of the user to which the session was destined.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 13
+  }, {
+    "name" : "Application",
+    "methodName" : "application",
+    "doc" : "Application associated with the session.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 14
+  }, {
+    "name" : "Virtual System",
+    "methodName" : "virtualSystem",
+    "doc" : "Virtual System associated with the session.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 15
+  }, {
+    "name" : "Source Zone",
+    "methodName" : "sourceZone",
+    "doc" : "Zone the session was sourced from.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 16
+  }, {
+    "name" : "Destination Zone",
+    "methodName" : "destinationZone",
+    "doc" : "Zone the session was destined to.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 17
+  }, {
+    "name" : "Inbound Interface",
+    "methodName" : "inboundInterface",
+    "doc" : "Interface that the session was sourced from.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 18
+  }, {
+    "name" : "Outbound Interface",
+    "methodName" : "outboundInterface",
+    "doc" : "Interface that the session was destined to.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 19
+  }, {
+    "name" : "Log Action",
+    "methodName" : "logAction",
+    "doc" : "Log Forwarding Profile that was applied to the session.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 20
+  }, {
+    "name" : "FUTURE_USE",
+    "methodName" : "futureUse",
+    "doc" : "",
+    "type" : "java.lang.String",
+    "skip" : true,
+    "index" : 21
+  }, {
+    "name" : "Session ID",
+    "methodName" : "sessionId",
+    "doc" : "An internal numerical identifier applied to each session.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 22
+  }, {
+    "name" : "Repeat Count",
+    "methodName" : "repeatCount",
+    "doc" : "Number of sessions with same Source IP, Destination IP, Application, and Subtype seen within 5 seconds; used for ICMP only.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 23
+  }, {
+    "name" : "Source Port",
+    "methodName" : "sourcePort",
+    "doc" : "Source port utilized by the session.",
+    "type" : "java.lang.Integer",
+    "skip" : false,
+    "index" : 24
+  }, {
+    "name" : "Destination Port",
+    "methodName" : "destinationPort",
+    "doc" : "Destination port utilized by the session.",
+    "type" : "java.lang.Integer",
+    "skip" : false,
+    "index" : 25
+  }, {
+    "name" : "NAT Source Port",
+    "methodName" : "natSourcePort",
+    "doc" : "Post-NAT source port.",
+    "type" : "java.lang.Integer",
+    "skip" : false,
+    "index" : 26
+  }, {
+    "name" : "NAT Destination Port",
+    "methodName" : "natDestinationPort",
+    "doc" : "Post-NAT destination port.",
+    "type" : "java.lang.Integer",
+    "skip" : false,
+    "index" : 27
+  }, {
+    "name" : "Flags",
+    "methodName" : "flags",
+    "doc" : "32-bit field that provides details on session; this field can be decoded by AND-ing the values with the logged value:\n0x80000000 —session has a packet capture (PCAP)\n0x02000000 —IPv6 session\n0x01000000 —SSL session was decrypted (SSL Proxy)\n0x00800000 —session was denied via URL filtering\n0x00400000 —session has a NAT translation performed (NAT)\n0x00200000 —user information for the session was captured through Captive Portal\n0x00080000 —X-Forwarded-For value from a proxy is in the source user field\n0x00040000 —log corresponds to a transaction within a http proxy session (Proxy Transaction)\n0x00008000 —session is a container page access (Container Page)\n0x00002000 —session has a temporary match on a rule for implicit application dependency handling. Available in PAN-OS 5.0.0 and above.\n0x00000800 —symmetric return was used to forward traffic for this session",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 28
+  }, {
+    "name" : "Protocol",
+    "methodName" : "protocol",
+    "doc" : "IP protocol associated with the session.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 29
+  }, {
+    "name" : "Action",
+    "methodName" : "action",
+    "doc" : "Action taken for the session; possible values are:\nAllow—session was allowed by policy\nDeny—session was denied by policy\nDrop—session was dropped silently\nDrop ICMP—session was silently dropped with an ICMP unreachable message to the host or application\nReset both—session was terminated and a TCP reset is sent to both the sides of the connection\nReset client—session was terminated and a TCP reset is sent to the client\nReset server—session was terminated and a TCP reset is sent to the server",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 30
+  }, {
+    "name" : "Bytes",
+    "methodName" : "bytes",
+    "doc" : "Number of total bytes (transmit and receive) for the session.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 31
+  }, {
+    "name" : "Bytes Sent",
+    "methodName" : "bytesSent",
+    "doc" : "Number of bytes in the client-to-server direction of the session.\nAvailable on all models except the PA-4000 Series.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 32
+  }, {
+    "name" : "Bytes Received",
+    "methodName" : "bytesReceived",
+    "doc" : "Number of bytes in the server-to-client direction of the session.\nAvailable on all models except the PA-4000 Series.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 33
+  }, {
+    "name" : "Packets",
+    "methodName" : "packets",
+    "doc" : "Number of total packets (transmit and receive) for the session.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 34
+  }, {
+    "name" : "Start Time",
+    "methodName" : "startTime",
+    "doc" : "Time of session start.",
+    "type" : "java.util.Date",
+    "skip" : false,
+    "index" : 35
+  }, {
+    "name" : "Elapsed Time",
+    "methodName" : "elapsedTime",
+    "doc" : "Elapsed time of the session.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 36
+  }, {
+    "name" : "Category",
+    "methodName" : "category",
+    "doc" : "URL category associated with the session (if applicable).",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 37
+  }, {
+    "name" : "FUTURE_USE",
+    "methodName" : "futureUse",
+    "doc" : "",
+    "type" : "java.lang.String",
+    "skip" : true,
+    "index" : 38
+  }, {
+    "name" : "Sequence Number",
+    "methodName" : "sequenceNumber",
+    "doc" : "A 64-bit log entry identifier incremented sequentially; each log type has a unique number space.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 39
+  }, {
+    "name" : "Action Flags",
+    "methodName" : "actionFlags",
+    "doc" : "A bit field indicating if the log was forwarded to Panorama.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 40
+  }, {
+    "name" : "Source Location",
+    "methodName" : "sourceLocation",
+    "doc" : "Source country or Internal region for private addresses; maximum length is 32 bytes.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 41
+  }, {
+    "name" : "Destination Location",
+    "methodName" : "destinationLocation",
+    "doc" : "Destination country or Internal region for private addresses. Maximum length is 32 bytes.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 42
+  }, {
+    "name" : "FUTURE_USE",
+    "methodName" : "futureUse",
+    "doc" : "",
+    "type" : "java.lang.String",
+    "skip" : true,
+    "index" : 43
+  }, {
+    "name" : "Packets Sent",
+    "methodName" : "packetsSent",
+    "doc" : "Number of client-to-server packets for the session.\nAvailable on all models except the PA-4000 Series.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 44
+  }, {
+    "name" : "Packets Received",
+    "methodName" : "packetsReceived",
+    "doc" : "Number of server-to-client packets for the session.\nAvailable on all models except the PA-4000 Series.",
+    "type" : "java.lang.Long",
+    "skip" : false,
+    "index" : 45
+  }, {
+    "name" : "Session End Reason",
+    "methodName" : "sessionEndReason",
+    "doc" : "The reason a session terminated. If the termination had multiple causes, this field displays only the highest priority reason. The possible session end reason values are as follows, in order of priority (where the first is highest):\nthreat—The firewall detected a threat associated with a reset, drop, or block (IP address) action.\npolicy-deny—The session matched a security rule with a deny or drop action.\ndecrypt-cert-validation—The session terminated because you configured the firewall to block SSL forward proxy decryption or SSL inbound inspection when the session uses client authentication or when the session uses a server certificate with any of the following conditions: expired, untrusted issuer, unknown status, or status verification time-out. This session end reason also displays when the server certificate produces a fatal error alert of type bad_certificate, unsupported_certificate, certificate_revoked, access_denied, or no_certificate_RESERVED (SSLv3 only).\ndecrypt-unsupport-param—The session terminated because you configured the firewall to block SSL forward proxy decryption or SSL inbound inspection when the session uses an unsupported protocol version, cipher, or SSH algorithm. This session end reason is displays when the session produces a fatal error alert of type unsupported_extension, unexpected_message, or handshake_failure.\ndecrypt-error—The session terminated because you configured the firewall to block SSL forward proxy decryption or SSL inbound inspection when firewall resources or the hardware security module (HSM) were unavailable. This session end reason is also displayed when you configured the firewall to block SSL traffic that has SSH errors or that produced any fatal error alert other than those listed for the decrypt-cert-validation and decrypt-unsupport-param end reasons.\ntcp-rst-from-client—The client sent a TCP reset to the server.\ntcp-rst-from-server—The server sent a TCP reset to the client.\nresources-unavailable—The session dropped because of a system resource limitation. For example, the session could have exceeded the number of out-of-order packets allowed per flow or the global out-of-order packet queue.\ntcp-fin—One host or both hosts in the connection sent a TCP FIN message to close the session.\ntcp-reuse—A session is reused and the firewall closes the previous session.\ndecoder—The decoder detects a new connection within the protocol (such as HTTP-Proxy) and ends the previous connection.\naged-out—The session aged out.\nunknown—This value applies in the following situations:\nSession terminations that the preceding reasons do not cover (for example, a clear session all command).\nFor logs generated in a PAN-OS release that does not support the session end reason field (releases older than PAN-OS 6.1), the value will be unknown after an upgrade to the current PAN-OS release or after the logs are loaded onto the firewall.\nIn Panorama, logs received from firewalls for which the PAN-OS version does not support session end reasons will have a value of unknown.\nn/a—This value applies when the traffic log type is not end.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 46
+  }, {
+    "name" : "Device Group Hierarchy Level 1",
+    "methodName" : "deviceGroupHierarchyLevel1",
+    "doc" : "A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.\nIf the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:\nCLI command in configure mode: show readonly dg-meta-data",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 47
+  }, {
+    "name" : "Device Group Hierarchy Level 2",
+    "methodName" : "deviceGroupHierarchyLevel2",
+    "doc" : "A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.\nIf the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:\nCLI command in configure mode: show readonly dg-meta-data",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 48
+  }, {
+    "name" : "Device Group Hierarchy Level 3",
+    "methodName" : "deviceGroupHierarchyLevel3",
+    "doc" : "A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.\nIf the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:\nCLI command in configure mode: show readonly dg-meta-data",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 49
+  }, {
+    "name" : "Device Group Hierarchy Level 4",
+    "methodName" : "deviceGroupHierarchyLevel4",
+    "doc" : "A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.\nIf the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:\nCLI command in configure mode: show readonly dg-meta-data",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 50
+  }, {
+    "name" : "Virtual System Name",
+    "methodName" : "virtualSystemName",
+    "doc" : "The name of the virtual system associated with the session; only valid on firewalls enabled for multiple virtual systems.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 51
+  }, {
+    "name" : "Device Name",
+    "methodName" : "deviceName",
+    "doc" : "The hostname of the firewall on which the session was logged.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 52
+  }, {
+    "name" : "Action Source",
+    "methodName" : "actionSource",
+    "doc" : "Specifies whether the action taken to allow or block an application was defined in the application or in policy. The actions can be allow, deny, drop, reset- server, reset-client or reset-both for the session.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 53
+  }, {
+    "name" : "Source VM UUID",
+    "methodName" : "sourceVmUuid",
+    "doc" : "Identifies the source universal unique identifier for a guest virtual machine in the VMware NSX environment.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 54
+  }, {
+    "name" : "Destination VM UUID",
+    "methodName" : "destinationVmUuid",
+    "doc" : "Identifies the destination universal unique identifier for a guest virtual machine in the VMware NSX environment.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 55
+  }, {
+    "name" : "Tunnel ID/IMSI",
+    "methodName" : "tunnelIdImsi",
+    "doc" : "ID of the tunnel being inspected or the International Mobile Subscriber Identity (IMSI) ID of the mobile user.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 56
+  }, {
+    "name" : "Monitor Tag/IMEI",
+    "methodName" : "monitorTagImei",
+    "doc" : "Monitor name you configured for the Tunnel Inspection policy rule or the International Mobile Equipment Identity (IMEI) ID of the mobile device.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 57
+  }, {
+    "name" : "Parent Session ID",
+    "methodName" : "parentSessionId",
+    "doc" : "ID of the session in which this session is tunneled. Applies to inner tunnel (if two levels of tunneling) or inside content (if one level of tunneling) only.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 58
+  }, {
+    "name" : "Parent Start Time",
+    "methodName" : "parentStartTime",
+    "doc" : "Year/month/day hours:minutes:seconds that the parent tunnel session began.",
+    "type" : "java.util.Date",
+    "skip" : false,
+    "index" : 59
+  }, {
+    "name" : "Tunnel Type",
+    "methodName" : "tunnelType",
+    "doc" : "Type of tunnel, such as GRE or IPSec.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 60
+  } ]
+}

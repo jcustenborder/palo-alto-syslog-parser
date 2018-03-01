@@ -1,0 +1,10 @@
+{
+  "format": ["FUTURE_USE","Receive Time","Serial Number","Type","Threat/Content Type","FUTURE_USE", "Generated Time"],
+  "fields": {
+    "Receive Time":"Time the log was received at the management plane.",
+    "Serial Number":"Serial number of the firewall that generated the log.",
+    "Type":"Specifies type of log; values are traffic, threat, config, system and hip-match.",
+    "Threat/Content Type":"Subtype of threat log. Values include the following:\r\ndata - Data pattern matching a Data Filtering profile.\r\nfile - File type matching a File Blocking profile.\r\nflood - Flood detected via a Zone Protection profile.\r\npacket - Packet-based attack protection triggered by a Zone Protection profile.\r\nscan - Scan detected via a Zone Protection profile.\r\nspyware - Spyware detected via an Anti-Spyware profile.\r\nurl - URL filtering log.\r\nvirus - Virus detected via an Antivirus profile.\r\nvulnerability - Vulnerability exploit detected via a Vulnerability Protection profile.\r\nwildfire - A WildFire verdict generated when the firewall submits a file to WildFire per a WildFire Analysis profile and a verdict (malicious, phishing, grayware, or benign, depending on what you are logging) is logged in the WildFire Submissions log.\r\nwildfire-virus - Virus detected via an Antivirus profile.",
+    "Generated Time":"The time the log was generated on the dataplane."
+  }
+}

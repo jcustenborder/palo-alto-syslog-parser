@@ -1,0 +1,55 @@
+{
+  "name" : "UserIdLog",
+  "logType" : "user-id",
+  "doc" : null,
+  "fields" : [ {
+    "name" : "FUTURE_USE",
+    "methodName" : "futureUse",
+    "doc" : "",
+    "type" : "java.lang.String",
+    "skip" : true,
+    "index" : 0
+  }, {
+    "name" : "Receive Time",
+    "methodName" : "receiveTime",
+    "doc" : "Time the log was received at the management plane.",
+    "type" : "java.util.Date",
+    "skip" : false,
+    "index" : 1
+  }, {
+    "name" : "Serial Number",
+    "methodName" : "serialNumber",
+    "doc" : "Serial number of the firewall that generated the log.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 2
+  }, {
+    "name" : "Type",
+    "methodName" : "type",
+    "doc" : "Specifies type of log; values are traffic, threat, config, system and hip-match.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 3
+  }, {
+    "name" : "Threat/Content Type",
+    "methodName" : "threatContentType",
+    "doc" : "Subtype of threat log. Values include the following:\ndata - Data pattern matching a Data Filtering profile.\nfile - File type matching a File Blocking profile.\nflood - Flood detected via a Zone Protection profile.\npacket - Packet-based attack protection triggered by a Zone Protection profile.\nscan - Scan detected via a Zone Protection profile.\nspyware - Spyware detected via an Anti-Spyware profile.\nurl - URL filtering log.\nvirus - Virus detected via an Antivirus profile.\nvulnerability - Vulnerability exploit detected via a Vulnerability Protection profile.\nwildfire - A WildFire verdict generated when the firewall submits a file to WildFire per a WildFire Analysis profile and a verdict (malicious, phishing, grayware, or benign, depending on what you are logging) is logged in the WildFire Submissions log.\nwildfire-virus - Virus detected via an Antivirus profile.",
+    "type" : "java.lang.String",
+    "skip" : false,
+    "index" : 4
+  }, {
+    "name" : "FUTURE_USE",
+    "methodName" : "futureUse",
+    "doc" : "",
+    "type" : "java.lang.String",
+    "skip" : true,
+    "index" : 5
+  }, {
+    "name" : "Generated Time",
+    "methodName" : "generatedTime",
+    "doc" : "The time the log was generated on the dataplane.",
+    "type" : "java.util.Date",
+    "skip" : false,
+    "index" : 6
+  } ]
+}
