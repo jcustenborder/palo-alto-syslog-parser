@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,215 +16,215 @@
 
 package com.github.jcustenborder.netty.paloalto;
 
-import java.util.Date;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.github.jcustenborder.netty.syslog.Nullable;
+
+import java.time.OffsetDateTime;
 
 @JsonDeserialize(as = ImmutableHipMatchLogMessage.class)
 @JsonSerialize(as = ImmutableHipMatchLogMessage.class)
 @org.immutables.value.Value.Immutable
 public interface HipMatchLogMessage
-    extends PaloAltoMessage
-{
+    extends PaloAltoMessage {
 
 
-    /**
-     * Time the log was generated on the dataplane.
-     * 
-     * @return
-     *     Time the log was generated on the dataplane.
-     */
-    @Nullable
-    @Index(6)
-    Date generatedTime();
+  /**
+   * Time the log was generated on the dataplane.
+   *
+   * @return
+   *     Time the log was generated on the dataplane.
+   */
+  @Nullable
+  @Index(6)
+  OffsetDateTime generatedTime();
 
-    /**
-     * Username of the user who initiated the session.
-     * 
-     * @return
-     *     Username of the user who initiated the session.
-     */
-    @Nullable
-    @Index(7)
-    String sourceUser();
+  /**
+   * Username of the user who initiated the session.
+   *
+   * @return
+   *     Username of the user who initiated the session.
+   */
+  @Nullable
+  @Index(7)
+  String sourceUser();
 
-    /**
-     * Virtual System associated with the HIP match log.
-     * 
-     * @return
-     *     Virtual System associated with the HIP match log.
-     */
-    @Nullable
-    @Index(8)
-    String virtualSystem();
+  /**
+   * Virtual System associated with the HIP match log.
+   *
+   * @return
+   *     Virtual System associated with the HIP match log.
+   */
+  @Nullable
+  @Index(8)
+  String virtualSystem();
 
-    /**
-     * Name of the user’s machine.
-     * 
-     * @return
-     *     Name of the user’s machine.
-     */
-    @Nullable
-    @Index(9)
-    String machineName();
+  /**
+   * Name of the user’s machine.
+   *
+   * @return
+   *     Name of the user’s machine.
+   */
+  @Nullable
+  @Index(9)
+  String machineName();
 
-    /**
-     * The operating system installed on the user’s machine or device (or on the client system).
-     * 
-     * @return
-     *     The operating system installed on the user’s machine or device (or on the client system).
-     */
-    @Nullable
-    @Index(10)
-    String os();
+  /**
+   * The operating system installed on the user’s machine or device (or on the client system).
+   *
+   * @return
+   *     The operating system installed on the user’s machine or device (or on the client system).
+   */
+  @Nullable
+  @Index(10)
+  String os();
 
-    /**
-     * IP address of the source user.
-     * 
-     * @return
-     *     IP address of the source user.
-     */
-    @Nullable
-    @Index(11)
-    String sourceIp();
+  /**
+   * IP address of the source user.
+   *
+   * @return
+   *     IP address of the source user.
+   */
+  @Nullable
+  @Index(11)
+  String sourceIp();
 
-    /**
-     * Name of the HIP object or profile.
-     * 
-     * @return
-     *     Name of the HIP object or profile.
-     */
-    @Nullable
-    @Index(12)
-    String hip();
+  /**
+   * Name of the HIP object or profile.
+   *
+   * @return
+   *     Name of the HIP object or profile.
+   */
+  @Nullable
+  @Index(12)
+  String hip();
 
-    /**
-     * Number of times the HIP profile matched.
-     * 
-     * @return
-     *     Number of times the HIP profile matched.
-     */
-    @Nullable
-    @Index(13)
-    Long repeatCount();
+  /**
+   * Number of times the HIP profile matched.
+   *
+   * @return
+   *     Number of times the HIP profile matched.
+   */
+  @Nullable
+  @Index(13)
+  Long repeatCount();
 
-    /**
-     * Whether the hip field represents a HIP object or a HIP profile.
-     * 
-     * @return
-     *     Whether the hip field represents a HIP object or a HIP profile.
-     */
-    @Nullable
-    @Index(14)
-    String hipType();
+  /**
+   * Whether the hip field represents a HIP object or a HIP profile.
+   *
+   * @return
+   *     Whether the hip field represents a HIP object or a HIP profile.
+   */
+  @Nullable
+  @Index(14)
+  String hipType();
 
-    /**
-     * A 64-bit log entry identifier incremented sequentially; each log type has a unique number space.
-     * 
-     * @return
-     *     A 64-bit log entry identifier incremented sequentially; each log type has a unique number space.
-     */
-    @Nullable
-    @Index(17)
-    Long sequenceNumber();
+  /**
+   * A 64-bit log entry identifier incremented sequentially; each log type has a unique number space.
+   *
+   * @return
+   *     A 64-bit log entry identifier incremented sequentially; each log type has a unique number space.
+   */
+  @Nullable
+  @Index(17)
+  Long sequenceNumber();
 
-    /**
-     * A bit field indicating if the log was forwarded to Panorama.
-     * 
-     * @return
-     *     A bit field indicating if the log was forwarded to Panorama.
-     */
-    @Nullable
-    @Index(18)
-    String actionFlags();
+  /**
+   * A bit field indicating if the log was forwarded to Panorama.
+   *
+   * @return
+   *     A bit field indicating if the log was forwarded to Panorama.
+   */
+  @Nullable
+  @Index(18)
+  String actionFlags();
 
-    /**
-     * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
-     * If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
-     * 
-     * @return
-     *     A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
-     *     If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
-     */
-    @Nullable
-    @Index(19)
-    String deviceGroupHierarchyLevel1();
+  /**
+   * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
+   * If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
+   *
+   * @return
+   *     A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
+   *     If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
+   */
+  @Nullable
+  @Index(19)
+  String deviceGroupHierarchyLevel1();
 
-    /**
-     * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
-     * If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
-     * 
-     * @return
-     *     A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
-     *     If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
-     */
-    @Nullable
-    @Index(20)
-    String deviceGroupHierarchyLevel2();
+  /**
+   * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
+   * If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
+   *
+   * @return
+   *     A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
+   *     If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
+   */
+  @Nullable
+  @Index(20)
+  String deviceGroupHierarchyLevel2();
 
-    /**
-     * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
-     * If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
-     * 
-     * @return
-     *     A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
-     *     If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
-     */
-    @Nullable
-    @Index(21)
-    String deviceGroupHierarchyLevel3();
+  /**
+   * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
+   * If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
+   *
+   * @return
+   *     A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
+   *     If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
+   */
+  @Nullable
+  @Index(21)
+  String deviceGroupHierarchyLevel3();
 
-    /**
-     * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
-     * If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
-     * 
-     * @return
-     *     A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
-     *     If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
-     */
-    @Nullable
-    @Index(22)
-    String deviceGroupHierarchyLevel4();
+  /**
+   * A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
+   * If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
+   *
+   * @return
+   *     A sequence of identification numbers that indicate the device group’s location within a device group hierarchy. The firewall (or virtual system) generating the log includes the identification number of each ancestor in its device group hierarchy. The shared device group (level 0) is not included in this structure.
+   *     If the log values are 12, 34, 45, 0, it means that the log was generated by a firewall (or virtual system) that belongs to device group 45, and its ancestors are 34, and 12. To view the device group names that correspond to the value 12, 34 or 45, use one of the following methods:
+   */
+  @Nullable
+  @Index(22)
+  String deviceGroupHierarchyLevel4();
 
-    /**
-     * The name of the virtual system associated with the session; only valid on firewalls enabled for multiple virtual systems.
-     * 
-     * @return
-     *     The name of the virtual system associated with the session; only valid on firewalls enabled for multiple virtual systems.
-     */
-    @Nullable
-    @Index(23)
-    String virtualSystemName();
+  /**
+   * The name of the virtual system associated with the session; only valid on firewalls enabled for multiple virtual systems.
+   *
+   * @return
+   *     The name of the virtual system associated with the session; only valid on firewalls enabled for multiple virtual systems.
+   */
+  @Nullable
+  @Index(23)
+  String virtualSystemName();
 
-    /**
-     * The hostname of the firewall on which the session was logged.
-     * 
-     * @return
-     *     The hostname of the firewall on which the session was logged.
-     */
-    @Nullable
-    @Index(24)
-    String deviceName();
+  /**
+   * The hostname of the firewall on which the session was logged.
+   *
+   * @return
+   *     The hostname of the firewall on which the session was logged.
+   */
+  @Nullable
+  @Index(24)
+  String deviceName();
 
-    /**
-     * A unique identifier for a virtual system on a Palo Alto Networks firewall.
-     * 
-     * @return
-     *     A unique identifier for a virtual system on a Palo Alto Networks firewall.
-     */
-    @Nullable
-    @Index(25)
-    String virtualSystemId();
+  /**
+   * A unique identifier for a virtual system on a Palo Alto Networks firewall.
+   *
+   * @return
+   *     A unique identifier for a virtual system on a Palo Alto Networks firewall.
+   */
+  @Nullable
+  @Index(25)
+  String virtualSystemId();
 
-    /**
-     * IPv6 address of the user’s machine or device.
-     * 
-     * @return
-     *     IPv6 address of the user’s machine or device.
-     */
-    @Nullable
-    @Index(26)
-    String ipv6SourceIp();
+  /**
+   * IPv6 address of the user’s machine or device.
+   *
+   * @return
+   *     IPv6 address of the user’s machine or device.
+   */
+  @Nullable
+  @Index(26)
+  String ipv6SourceIp();
 
 }

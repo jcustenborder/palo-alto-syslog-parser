@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -67,11 +67,34 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 @Disabled
 public class CodeGeneratorTest {
-  private static final Logger log = LoggerFactory.getLogger(CodeGeneratorTest.class);
-
   static final String FUTURE_USE = "FUTURE_USE";
   static final Set<String> SKIP_FIELDS = ImmutableSet.of(FUTURE_USE);
+  private static final Logger log = LoggerFactory.getLogger(CodeGeneratorTest.class);
+  static ObjectMapper mapper;
+  static JCodeModel model;
+  static JClass parserClass;
+  static JClass loggerClass;
+  static JClass loggerFactoryClass;
+  static JClass messageClass;
+  static File[] inputFiles;
 
+  @BeforeAll
+  static void beforeAll() {
+    mapper = new ObjectMapper();
+    mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+    model = new JCodeModel();
+    parserClass = (JClass) model._ref(PaloAltoParser.class);
+    loggerClass = (JClass) model._ref(Logger.class);
+    loggerFactoryClass = (JClass) model._ref(LoggerFactory.class);
+    messageClass = (JClass) model._ref(RFC3164Message.class);
+
+    inputFiles = new File("src/test/resources/data").listFiles((dir, name) -> name.endsWith(".json"));
+  }
+
+  @AfterAll
+  static void afterAll() throws IOException {
+    model.build(new File("src/main/java"));
+  }
 
   @TestFactory
   public Stream<DynamicTest> unclean() throws IOException {
@@ -136,32 +159,6 @@ public class CodeGeneratorTest {
       }
       mapper.writeValue(new File(outputPath, f.getName()), dataInterface);
     }));
-  }
-
-  static ObjectMapper mapper;
-  static JCodeModel model;
-  static JClass parserClass;
-  static JClass loggerClass;
-  static JClass loggerFactoryClass;
-  static JClass messageClass;
-  static File[] inputFiles;
-
-  @BeforeAll
-  static void beforeAll() {
-    mapper = new ObjectMapper();
-    mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-    model = new JCodeModel();
-    parserClass = (JClass) model._ref(PaloAltoParser.class);
-    loggerClass = (JClass) model._ref(Logger.class);
-    loggerFactoryClass = (JClass) model._ref(LoggerFactory.class);
-    messageClass = (JClass) model._ref(RFC3164Message.class);
-
-    inputFiles = new File("src/test/resources/data").listFiles((dir, name) -> name.endsWith(".json"));
-  }
-
-  @AfterAll
-  static void afterAll() throws IOException {
-    model.build(new File("src/main/java"));
   }
 
   @Test
@@ -358,7 +355,7 @@ public class CodeGeneratorTest {
         continue;
       }
       JMethod method = jDefinedClass.method(JMod.NONE, field.type, field.methodName);
-      if(!Strings.isNullOrEmpty(field.doc)) {
+      if (!Strings.isNullOrEmpty(field.doc)) {
         method.javadoc().append(field.doc.trim());
         method.javadoc().addReturn().add(field.doc.trim());
       }

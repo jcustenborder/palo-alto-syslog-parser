@@ -19,17 +19,21 @@ import com.github.jcustenborder.netty.syslog.RFC3164Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 
 public abstract class PaloAltoParser<T extends PaloAltoMessage> {
   private static final Logger log = LoggerFactory.getLogger(PaloAltoParser.class);
+  private final ZoneOffset zoneOffset;
 
   public PaloAltoParser() {
-    this.format = new SimpleDateFormat("yyyy/MM/DD hh:mm:ss");
-    this.format.setTimeZone(TimeZone.getTimeZone("UTC"));
+    this.formatter = new DateTimeFormatterBuilder()
+        .appendPattern("yyyy/MM/dd HH:mm:ss")
+        .toFormatter();
+    this.zoneOffset = ZoneOffset.UTC;
   }
 
   public abstract String logType();
@@ -51,19 +55,15 @@ public abstract class PaloAltoParser<T extends PaloAltoMessage> {
     return result;
   }
 
-  final SimpleDateFormat format;
+  final DateTimeFormatter formatter;
 
-  protected Date parseDate(String[] fields, int index) {
+  protected OffsetDateTime parseDate(String[] fields, int index) {
     log.trace("parseDate() - index='{}' fields='{}'", index, fields);
     final String input = parseString(fields, index);
     if (null == input) {
       return null;
     }
-    try {
-      return format.parse(input);
-    } catch (ParseException e) {
-      throw new IllegalStateException(e);
-    }
+    return LocalDateTime.parse(input, this.formatter).atOffset(this.zoneOffset);
   }
 
   protected Long parseLong(String[] fields, int index) {

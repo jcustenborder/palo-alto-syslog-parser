@@ -78,7 +78,7 @@
         <dependency>
             <groupId>com.github.jcustenborder.netty</groupId>
             <artifactId>netty-codec-syslog</artifactId>
-            <version>[0.1.4,0.1.1000)</version>
+            <version>[0.2.7,0.2.1000)</version>
         </dependency>
         <dependency>
             <groupId>org.immutables</groupId>
@@ -122,6 +122,18 @@
             <version>${logback.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>org.javassist</groupId>-->
             <!--<artifactId>javassist</artifactId>-->
@@ -139,12 +151,6 @@
             <artifactId>guava</artifactId>
             <version>23.0</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>

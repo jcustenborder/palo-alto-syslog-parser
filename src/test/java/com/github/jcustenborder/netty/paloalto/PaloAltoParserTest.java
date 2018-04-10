@@ -18,6 +18,7 @@ package com.github.jcustenborder.netty.paloalto;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.github.jcustenborder.netty.syslog.RFC3164Message;
 import io.netty.channel.ChannelHandlerContext;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,15 +31,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 import static org.mockito.Mockito.mock;
 
 public abstract class PaloAltoParserTest<M extends PaloAltoMessage, P extends PaloAltoParser<M>, T extends BaseTestCase<M>> {
   protected abstract P parser();
+
   protected abstract Class<T> testCaseClass();
+
   protected abstract void assertMessage(M expected, M actual);
 
   protected ObjectMapper mapper;
@@ -50,8 +51,12 @@ public abstract class PaloAltoParserTest<M extends PaloAltoMessage, P extends Pa
   public void setup() {
     this.mapper = new ObjectMapper();
     this.mapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
+    this.mapper.configure(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS, true);
     this.mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
     this.mapper.configure(DeserializationFeature.READ_ENUMS_USING_TO_STRING, true);
+    this.mapper.configure(DeserializationFeature.READ_DATE_TIMESTAMPS_AS_NANOSECONDS, true);
+
+    this.mapper.registerModule(new JavaTimeModule());
     P parser = parser();
     this.decoder = new PaloAltoMessageDecoder(parser);
 
@@ -75,6 +80,7 @@ public abstract class PaloAltoParserTest<M extends PaloAltoMessage, P extends Pa
     return Arrays.stream(this.inputFiles).map(file -> dynamicTest(file.getName(), () -> {
       final T testCase = this.mapper.readValue(file, testCaseClass());
       final M actual = parse(testCase.input);
+      this.mapper.writeValue(file, testCase);
       assertMessage(testCase.expected, actual);
     }));
   }
