@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.github.jcustenborder.netty.paloalto;
 
 
 public class AuthenticationLogParserTestCase
-    extends BaseTestCase<AuthenticationLogMessage>
-{
+    extends BaseTestCase<AuthenticationLogMessage> {
 
 
 }
