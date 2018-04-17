@@ -1,7 +1,6 @@
 {
   "input" : {
     "tag" : null,
-    "processId" : null,
     "date" : 1519335140000.000000000,
     "remoteAddress" : "127.0.0.1",
     "rawMessage" : "<14>Feb  22 21:32:20 pa-fw-2 1,2012/04/10 04:20:05,001606001116,THREAT,file,1,2012/04/10 04:19:59,173.236.179.57,192.168.0.2,0.0.0.0,0.0.0.0,rule1,,crusher,web-browsing,vsys1,untrust,trust,ethernet1/2,ethernet1/1,forwardAll,2012/04/10 04:20:05,64856,1,80,54431,0,0,0x200000,tcp,deny,\"uLLGRaXP.exe\",Windows Executable (EXE)(52020),any,low,server-to-client,0,0x0,United States,192.168.0.0-192.168.255.255,0,",
@@ -9,7 +8,8 @@
     "version" : null,
     "facility" : 1,
     "host" : "pa-fw-2",
-    "message" : "1,2012/04/10 04:20:05,001606001116,THREAT,file,1,2012/04/10 04:19:59,173.236.179.57,192.168.0.2,0.0.0.0,0.0.0.0,rule1,,crusher,web-browsing,vsys1,untrust,trust,ethernet1/2,ethernet1/1,forwardAll,2012/04/10 04:20:05,64856,1,80,54431,0,0,0x200000,tcp,deny,\"uLLGRaXP.exe\",Windows Executable (EXE)(52020),any,low,server-to-client,0,0x0,United States,192.168.0.0-192.168.255.255,0,"
+    "message" : "1,2012/04/10 04:20:05,001606001116,THREAT,file,1,2012/04/10 04:19:59,173.236.179.57,192.168.0.2,0.0.0.0,0.0.0.0,rule1,,crusher,web-browsing,vsys1,untrust,trust,ethernet1/2,ethernet1/1,forwardAll,2012/04/10 04:20:05,64856,1,80,54431,0,0,0x200000,tcp,deny,\"uLLGRaXP.exe\",Windows Executable (EXE)(52020),any,low,server-to-client,0,0x0,United States,192.168.0.0-192.168.255.255,0,",
+    "processId" : null
   },
   "expected" : {
     "threatContentType" : "file",
@@ -78,8 +78,6 @@
     "receiveTime" : 1334031605.000000000,
     "serialNumber" : "001606001116",
     "type" : "THREAT",
-    "tag" : null,
-    "processId" : null,
     "date" : 1519335140000.000000000,
     "remoteAddress" : "127.0.0.1",
     "rawMessage" : "<14>Feb  22 21:32:20 pa-fw-2 1,2012/04/10 04:20:05,001606001116,THREAT,file,1,2012/04/10 04:19:59,173.236.179.57,192.168.0.2,0.0.0.0,0.0.0.0,rule1,,crusher,web-browsing,vsys1,untrust,trust,ethernet1/2,ethernet1/1,forwardAll,2012/04/10 04:20:05,64856,1,80,54431,0,0,0x200000,tcp,deny,\"uLLGRaXP.exe\",Windows Executable (EXE)(52020),any,low,server-to-client,0,0x0,United States,192.168.0.0-192.168.255.255,0,",
@@ -87,6 +85,7 @@
     "version" : null,
     "facility" : 1,
     "host" : "pa-fw-2",
-    "message" : "1,2012/04/10 04:20:05,001606001116,THREAT,file,1,2012/04/10 04:19:59,173.236.179.57,192.168.0.2,0.0.0.0,0.0.0.0,rule1,,crusher,web-browsing,vsys1,untrust,trust,ethernet1/2,ethernet1/1,forwardAll,2012/04/10 04:20:05,64856,1,80,54431,0,0,0x200000,tcp,deny,\"uLLGRaXP.exe\",Windows Executable (EXE)(52020),any,low,server-to-client,0,0x0,United States,192.168.0.0-192.168.255.255,0,"
+    "message" : "1,2012/04/10 04:20:05,001606001116,THREAT,file,1,2012/04/10 04:19:59,173.236.179.57,192.168.0.2,0.0.0.0,0.0.0.0,rule1,,crusher,web-browsing,vsys1,untrust,trust,ethernet1/2,ethernet1/1,forwardAll,2012/04/10 04:20:05,64856,1,80,54431,0,0,0x200000,tcp,deny,\"uLLGRaXP.exe\",Windows Executable (EXE)(52020),any,low,server-to-client,0,0x0,United States,192.168.0.0-192.168.255.255,0,",
+    "processId" : null
   }
 }

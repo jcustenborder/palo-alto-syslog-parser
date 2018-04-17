@@ -16,7 +16,7 @@
 package com.github.jcustenborder.netty.paloalto;
 
 import com.github.jcustenborder.netty.paloalto.ImmutableUserIdLogMessage.Builder;
-import com.github.jcustenborder.netty.syslog.RFC3164Message;
+import com.github.jcustenborder.netty.syslog.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ public class UserIdLogParser
   private final static Logger log = LoggerFactory.getLogger(UserIdLogParser.class);
 
   @Override
-  public UserIdLogMessage parse(RFC3164Message message, String[] fields) {
+  public UserIdLogMessage parse(Message message, String[] fields) {
     Builder builder = ImmutableUserIdLogMessage.builder();
     builder.from(message);
     log.trace("parse() - Skipping field 0: futureUse");
