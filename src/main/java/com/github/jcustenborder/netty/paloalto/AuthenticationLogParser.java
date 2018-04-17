@@ -16,7 +16,7 @@
 package com.github.jcustenborder.netty.paloalto;
 
 import com.github.jcustenborder.netty.paloalto.ImmutableAuthenticationLogMessage.Builder;
-import com.github.jcustenborder.netty.syslog.RFC3164Message;
+import com.github.jcustenborder.netty.syslog.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +26,7 @@ public class AuthenticationLogParser
   private final static Logger log = LoggerFactory.getLogger(AuthenticationLogParser.class);
 
   @Override
-  public AuthenticationLogMessage parse(RFC3164Message message, String[] fields) {
+  public AuthenticationLogMessage parse(Message message, String[] fields) {
     Builder builder = ImmutableAuthenticationLogMessage.builder();
     builder.from(message);
     log.trace("parse() - Skipping field 0: futureUse");

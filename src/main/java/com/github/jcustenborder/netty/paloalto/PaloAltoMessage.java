@@ -15,12 +15,13 @@
  */
 package com.github.jcustenborder.netty.paloalto;
 
+import com.github.jcustenborder.netty.syslog.Message;
 import com.github.jcustenborder.netty.syslog.Nullable;
 import com.github.jcustenborder.netty.syslog.RFC3164Message;
 
 import java.time.OffsetDateTime;
 
-public interface PaloAltoMessage extends RFC3164Message {
+public interface PaloAltoMessage extends Message {
   /**
    * Time the log was received at the management plane.
    * @return Time the log was received at the management plane.

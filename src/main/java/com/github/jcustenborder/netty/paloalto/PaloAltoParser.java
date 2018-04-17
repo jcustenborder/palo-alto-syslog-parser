@@ -15,7 +15,7 @@
  */
 package com.github.jcustenborder.netty.paloalto;
 
-import com.github.jcustenborder.netty.syslog.RFC3164Message;
+import com.github.jcustenborder.netty.syslog.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,7 +38,7 @@ public abstract class PaloAltoParser<T extends PaloAltoMessage> {
 
   public abstract String logType();
 
-  public abstract T parse(RFC3164Message message, String[] fields);
+  public abstract T parse(Message message, String[] fields);
 
 
   protected String parseString(String[] fields, int index) {
