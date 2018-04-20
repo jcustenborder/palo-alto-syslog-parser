@@ -27,6 +27,11 @@ public class AuthenticationLogParserTest
   }
 
   @Override
+  protected Class<AuthenticationLogMessage> messageClass() {
+    return AuthenticationLogMessage.class;
+  }
+
+  @Override
   protected Class<AuthenticationLogParserTestCase> testCaseClass() {
     return AuthenticationLogParserTestCase.class;
   }

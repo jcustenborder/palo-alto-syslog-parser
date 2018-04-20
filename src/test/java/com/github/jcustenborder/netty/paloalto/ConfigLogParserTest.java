@@ -27,6 +27,11 @@ public class ConfigLogParserTest
   }
 
   @Override
+  protected Class<ConfigLogMessage> messageClass() {
+    return ConfigLogMessage.class;
+  }
+
+  @Override
   protected Class<ConfigLogParserTestCase> testCaseClass() {
     return ConfigLogParserTestCase.class;
   }

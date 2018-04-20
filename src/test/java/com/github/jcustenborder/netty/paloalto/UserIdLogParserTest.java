@@ -27,6 +27,11 @@ public class UserIdLogParserTest
   }
 
   @Override
+  protected Class<UserIdLogMessage> messageClass() {
+    return UserIdLogMessage.class;
+  }
+
+  @Override
   protected Class<UserIdLogParserTestCase> testCaseClass() {
     return UserIdLogParserTestCase.class;
   }

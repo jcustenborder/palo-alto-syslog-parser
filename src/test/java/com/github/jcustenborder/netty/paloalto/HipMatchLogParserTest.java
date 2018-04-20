@@ -27,6 +27,11 @@ public class HipMatchLogParserTest
   }
 
   @Override
+  protected Class<HipMatchLogMessage> messageClass() {
+    return HipMatchLogMessage.class;
+  }
+
+  @Override
   protected Class<HipMatchLogParserTestCase> testCaseClass() {
     return HipMatchLogParserTestCase.class;
   }
