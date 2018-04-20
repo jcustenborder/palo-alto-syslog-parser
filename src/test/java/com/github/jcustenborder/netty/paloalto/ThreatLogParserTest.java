@@ -27,6 +27,11 @@ public class ThreatLogParserTest
   }
 
   @Override
+  protected Class<ThreatLogMessage> messageClass() {
+    return ThreatLogMessage.class;
+  }
+
+  @Override
   protected Class<ThreatLogParserTestCase> testCaseClass() {
     return ThreatLogParserTestCase.class;
   }

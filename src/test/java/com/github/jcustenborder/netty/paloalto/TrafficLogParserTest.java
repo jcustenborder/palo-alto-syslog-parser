@@ -27,6 +27,11 @@ public class TrafficLogParserTest
   }
 
   @Override
+  protected Class<TrafficLogMessage> messageClass() {
+    return TrafficLogMessage.class;
+  }
+
+  @Override
   protected Class<TrafficLogParserTestCase> testCaseClass() {
     return TrafficLogParserTestCase.class;
   }

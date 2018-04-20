@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,16 +15,17 @@
  */
 package com.github.jcustenborder.netty.paloalto;
 
-import com.github.jcustenborder.netty.syslog.RFC3164Message;
+import com.github.jcustenborder.netty.syslog.Message;
 import com.opencsv.CSVParser;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.enums.CSVReaderNullFieldIndicator;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.MessageToMessageDecoder;
+import io.netty.channel.SimpleChannelInboundHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -32,12 +33,12 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @ChannelHandler.Sharable
-public class PaloAltoMessageDecoder extends MessageToMessageDecoder<RFC3164Message> {
-  private static final Logger log = LoggerFactory.getLogger(PaloAltoMessageDecoder.class);
+public class PaloAltoMessageHandler extends SimpleChannelInboundHandler<Message> {
+  private static final Logger log = LoggerFactory.getLogger(PaloAltoMessageHandler.class);
   final Map<String, PaloAltoParser> parsers;
   final CSVParser csvParser;
 
-  public PaloAltoMessageDecoder() {
+  public PaloAltoMessageHandler() {
     this(Arrays.asList(
         new AuthenticationLogParser(),
         new ConfigLogParser(),
@@ -49,11 +50,36 @@ public class PaloAltoMessageDecoder extends MessageToMessageDecoder<RFC3164Messa
     ));
   }
 
-  public PaloAltoMessageDecoder(PaloAltoParser... parsers) {
+  @Override
+  protected void channelRead0(ChannelHandlerContext context, Message message) throws Exception {
+    context.executor().execute(() -> {
+      try {
+        log.trace("decode() - message = '{}'", message);
+        final String[] fields = csvParser.parseLine(message.message());
+        final String logType = fields[3];
+        log.trace("decode() - logType = '{}'", logType);
+
+        PaloAltoParser parser = parsers.get(logType);
+        if (null != parser) {
+          log.trace("decode() - Parsing message with {}.", parser.getClass().getSimpleName());
+          PaloAltoMessage paloAltoMessage = parser.parse(message, fields);
+          if (null != paloAltoMessage) {
+            context.fireChannelRead(paloAltoMessage);
+          }
+        } else {
+          log.warn("decode() - Could not find parser. logType = '{}'.", logType);
+        }
+      } catch (IOException ex) {
+        log.error("Exception thrown", ex);
+      }
+    });
+  }
+
+  public PaloAltoMessageHandler(PaloAltoParser... parsers) {
     this(Arrays.asList(parsers));
   }
 
-  public PaloAltoMessageDecoder(List<PaloAltoParser> parsers) {
+  public PaloAltoMessageHandler(List<PaloAltoParser> parsers) {
     if (null == parsers || parsers.isEmpty()) {
       throw new IllegalStateException("parsers cannot be null or empty.");
     }
@@ -64,23 +90,5 @@ public class PaloAltoMessageDecoder extends MessageToMessageDecoder<RFC3164Messa
         .withQuoteChar('"')
         .withSeparator(',')
         .build();
-  }
-
-
-  @Override
-  protected void decode(ChannelHandlerContext channelHandlerContext, RFC3164Message message, List<Object> output) throws Exception {
-    log.trace("decode() - message = '{}'", message);
-    final String[] fields = this.csvParser.parseLine(message.message());
-    final String logType = fields[3];
-    log.trace("decode() - logType = '{}'", logType);
-
-    PaloAltoParser parser = this.parsers.get(logType);
-    if (null != parser) {
-      log.trace("decode() - Parsing message with {}.", parser.getClass().getSimpleName());
-      PaloAltoMessage paloAltoMessage = parser.parse(message, fields);
-      output.add(paloAltoMessage);
-    } else {
-      log.warn("decode() - Could not find parser. logType = '{}'.", logType);
-    }
   }
 }

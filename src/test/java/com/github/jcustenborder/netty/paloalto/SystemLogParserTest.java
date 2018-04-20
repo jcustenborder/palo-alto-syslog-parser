@@ -27,6 +27,11 @@ public class SystemLogParserTest
   }
 
   @Override
+  protected Class<SystemLogMessage> messageClass() {
+    return SystemLogMessage.class;
+  }
+
+  @Override
   protected Class<SystemLogParserTestCase> testCaseClass() {
     return SystemLogParserTestCase.class;
   }

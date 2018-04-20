@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,36 +19,52 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.github.jcustenborder.netty.syslog.RFC3164Message;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.util.concurrent.EventExecutor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.stubbing.Answer;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public abstract class PaloAltoParserTest<M extends PaloAltoMessage, P extends PaloAltoParser<M>, T extends BaseTestCase<M>> {
   protected abstract P parser();
+
+  protected abstract Class<M> messageClass();
 
   protected abstract Class<T> testCaseClass();
 
   protected abstract void assertMessage(M expected, M actual);
 
   protected ObjectMapper mapper;
-  protected PaloAltoMessageDecoder decoder;
+  protected PaloAltoMessageHandler decoder;
   protected File inputRoot;
   protected File[] inputFiles;
 
+  protected Class<T> testCaseClass;
+  protected Class<M> messageClass;
+
+  @Mock
+  protected ChannelHandlerContext context;
+  @Mock
+  protected EventExecutor eventExecutor;
+
   @BeforeEach
   public void setup() {
+    this.testCaseClass = testCaseClass();
+    this.messageClass = messageClass();
     this.mapper = new ObjectMapper();
     this.mapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
     this.mapper.configure(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS, true);
@@ -58,7 +74,7 @@ public abstract class PaloAltoParserTest<M extends PaloAltoMessage, P extends Pa
 
     this.mapper.registerModule(new JavaTimeModule());
     P parser = parser();
-    this.decoder = new PaloAltoMessageDecoder(parser);
+    this.decoder = new PaloAltoMessageHandler(parser);
 
     this.inputRoot = new File(
         "src/test/resources/com/github/jcustenborder/netty/syslog",
@@ -67,21 +83,26 @@ public abstract class PaloAltoParserTest<M extends PaloAltoMessage, P extends Pa
     this.inputFiles = this.inputRoot.listFiles((dir, name) -> name.endsWith(".json"));
   }
 
-  protected M parse(RFC3164Message message) throws Exception {
-    ChannelHandlerContext channelHandlerContext = mock(ChannelHandlerContext.class);
-    List<Object> output = new ArrayList<>();
-    this.decoder.decode(channelHandlerContext, message, output);
-    assertFalse(output.isEmpty(), "output should not be empty");
-    return (M) output.get(0);
-  }
 
   @TestFactory
   public Stream<DynamicTest> parse() {
     return Arrays.stream(this.inputFiles).map(file -> dynamicTest(file.getName(), () -> {
-      final T testCase = this.mapper.readValue(file, testCaseClass());
-      final M actual = parse(testCase.input);
-      this.mapper.writeValue(file, testCase);
-      assertMessage(testCase.expected, actual);
+      final T testCase = this.mapper.readValue(file, this.testCaseClass);
+      when(context.executor()).thenReturn(eventExecutor);
+
+      doAnswer(invocationOnMock -> {
+        Runnable runnable = invocationOnMock.getArgument(0);
+        runnable.run();
+        return null;
+      }).when(eventExecutor).execute(any(Runnable.class));
+
+      when(context.fireChannelRead(any(this.messageClass))).thenAnswer((Answer<ChannelHandlerContext>) invocationOnMock -> {
+        M actual = invocationOnMock.getArgument(0);
+        assertMessage(testCase.expected, actual);
+        return context;
+      });
+
+      this.decoder.channelRead0(context, testCase.input);
     }));
   }
 
